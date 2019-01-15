@@ -14,5 +14,5 @@ yarn-error.log
 .phpunit.result.cache
 config.codekit3
 semantic.json
-gulfile-min.js
+gulpfile-min.js
 gulpfile.js
