@@ -33,7 +33,9 @@
 
 							    <div class="ui secondary segment">
 							    	<div class="ui content">
-							    		<a href="/projects/{{$project->id}}/">{{ $project->project_name }}</a> <span class="ui tiny blue circular label">{{ $project->stories->count() }}</span>
+							    		<a href="/projects/{{$project->id}}/">{{ $project->project_name }}</a> 
+							    		<span class="ui tiny blue circular label">{{ $project->stories->count() }}</span> 
+							    		{{-- - {{ $project->latestHeadline() }} --}}
 							    	</div>
 							    </div>
 								
