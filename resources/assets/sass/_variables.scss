@@ -1,0 +1,63 @@
+
+// Body
+$body-bg: #f5f8fa;
+
+// Borders
+$laravel-border-color: darken($body-bg, 10%);
+$list-group-border: $laravel-border-color;
+$navbar-default-border: $laravel-border-color;
+$panel-default-border: $laravel-border-color;
+$panel-inner-border: $laravel-border-color;
+
+// Brands
+$brand-primary: #3097D1;
+$brand-info: #8eb4cb;
+$brand-success: #2ab27b;
+$brand-warning: #cbb956;
+$brand-danger: #bf5329;
+
+//AAC Media Colors
+
+$AAC-colors: (
+	solitude: #E8EFF3,
+	ziggurat: #C1D4DF,
+	nepal: #8EB0C4,
+	bermuda-gray: #7490A0,
+	tiara: #B8BEC2,
+	nevada: #637078,
+	river-bed: #515C62,
+	bone: #E4D7C3,
+	rodeo-dust: #C4A67B,
+	sandal: #A08865,
+	bunker: #151515,
+	dove-gray: #727272,
+	alabaster: #FBFBFB,
+);
+
+// Typography
+$icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
+$font-family-sans-serif: "Raleway", sans-serif;
+$font-size-base: 14px;
+$line-height-base: 1.6;
+$text-color: #636b6f;
+
+// Navbar
+$navbar-default-bg: #fff;
+
+// Buttons
+$btn-default-color: $text-color;
+
+// Inputs
+$input-border: lighten($text-color, 40%);
+$input-border-focus: lighten($brand-primary, 25%);
+$input-color-placeholder: lighten($text-color, 30%);
+
+// Panels
+$panel-default-heading-bg: #fff;
+
+// Colors
+$admin-details: #aaa;
+$topbar-link-color: #eee;
+
+.top-bar a { color: map-get($AAC-colors, solitude); } //$topbar-link-color;
+.top-bar li a { color: $topbar-link-color; }

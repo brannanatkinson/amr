@@ -1,0 +1,12 @@
+/*******************************
+     User Global Variables
+*******************************/
+
+@fontName          : 'Open Sans';
+
+@WinterHazel: #d8ce97;
+@GrainBrown: #e2cbb1;
+@Thatch: #b69696;
+@GullGray: #93adb4;
+
+

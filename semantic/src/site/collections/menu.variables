@@ -1,0 +1,8 @@
+/*******************************
+    User Variable Overrides
+*******************************/
+@textMenuItemSpacing: @relative7px;
+@textMenuMargin: 0em -(@textMenuItemSpacing) @relativeHuge;
+
+@secondaryMargin: 0em -@secondaryItemSpacing 1em;
+@secondaryItemSpacing: @relative5px;
