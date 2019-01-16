@@ -2,10 +2,14 @@
 
 @section('content')
 	<div class="ui container">
-			@if ( Auth::user()->hasRole('siteadmin') ) 
-				<h1>Mentions for All Clients</h1>
-			@else
-				{{-- <h1>Media -- {{ $clientName->client_name }}</h1> --}}
+		    @if (\Request::is('projects/*'))
+			    <h1>Project -- {{ $project->project_name }}</h1>
+			@else 
+				@if ( Auth::user()->hasRole('siteadmin') ) 
+					<h1>Mentions for All Clients</h1>
+				@else
+					{{-- <h1>Media -- {{ $clientName->client_name }}</h1> --}}
+				@endif
 			@endif
 		<div class="ui three stackable cards">
 			@foreach ($stories as $story)

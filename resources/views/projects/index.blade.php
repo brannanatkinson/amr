@@ -7,7 +7,6 @@
 	<div class="row">
 
 		<div class="column">
-			
 
 			@if ( Auth::user()->hasRole('siteadmin') ) 
 

@@ -75,7 +75,7 @@ class ProjectController extends Controller
             $project = Project::find($id);
             $stories = Story::where('project_id', '=', $id)->orderBy('story_date', 'desc')->paginate(15);
             //return view('projects.show', compact('project'));
-            return view('stories.index', compact('stories'));
+            return view('stories.index', compact('stories', 'project'));
 
         } else {
 
@@ -85,7 +85,7 @@ class ProjectController extends Controller
             $stories = Story::where('project_id', '=', $id)->orderBy('story_date', 'desc')->paginate(15);
 
             if ( $project->client_id == Auth::user()->client_id ){
-                return view('stories.index', compact('stories'));
+                return view('stories.index', compact('stories', 'project'));
                 //return view('projects.show', compact('project'));
             } else {
                 return redirect('/projects');
