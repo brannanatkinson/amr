@@ -21,10 +21,8 @@
 			@if ( Auth::user()->hasRole('siteadmin') )
 
 				@foreach($clients as $client)
-
 					@if($client->projects->count() > 0)
-					<h3>{{ $client->client_name }}</h3>
-
+					    <h3>{{ $client->client_name }}</h3>
 						<table class="ui celled table">
 							<thead>
 								<tr>
@@ -34,24 +32,17 @@
 									<th width="25%">Last Mention</th>
 							    </tr>
 							</thead>
-							
 							@foreach($client->projects as $project)
 							    <tr>
 							    	<td><a href="/projects/{{$project->id}}/">{{ $project->project_name }}</a> </td>
-							    	<td style="text-align: center;"><span class="ui tiny blue circular label">{{ $project->stories->count() }}</span></td>
+							    	<td style="text-align: center;">{{ $project->stories->count() }}</td>
 							    	<td></td>
 							    	<td></td>
 							    </tr>
-								
-
 							@endforeach
-
 						</table>
-
 					@endif 
-
 				@endforeach
-
 			@else
 
 				<ul>
