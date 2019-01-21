@@ -47,7 +47,12 @@ class SigninController extends Controller
         }
         $user = User::find($id);
         Auth::login($user);
-        return view('signin.firstaccess');
+        if ( $user->login_link != 1 ){
+            return view('signin.firstaccess');
+        } else {
+            return view('stories.index');
+        }
+        
     }
 
 }
