@@ -22,9 +22,8 @@
 
 				@foreach($clients as $client)
 
-					<h3>{{ $client->client_name }}</h3>
-
 					@if($client->projects->count() > 0)
+					<h3>{{ $client->client_name }}</h3>
 
 						<table class="ui celled table">
 							<thead>
