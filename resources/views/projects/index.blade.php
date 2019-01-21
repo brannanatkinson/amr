@@ -26,17 +26,23 @@
 
 					@if($client->projects->count() > 0)
 
-						<div class="ui segments">
+						<table class="ui celled table">
+							<thead>
+								<tr>
+									<th width="40%">Project</th>
+									<th width="10%">Mentions</th>
+									<th width="25%">First Mention</th>
+									<th width="25%">Last Mention</th>
+							    </tr>
+							</thead>
 							
 							@foreach($client->projects as $project)
-
-							    <div class="ui secondary segment">
-							    	<div class="ui content">
-							    		<a href="/projects/{{$project->id}}/">{{ $project->project_name }}</a> 
-							    		<span class="ui tiny blue circular label">{{ $project->stories->count() }}</span> 
-							    		{{-- - {{ $project->latestHeadline() }} --}}
-							    	</div>
-							    </div>
+							    <tr>
+							    	<td><a href="/projects/{{$project->id}}/">{{ $project->project_name }}</a> </td>
+							    	<td style="text-align: center;"><span class="ui tiny blue circular label">{{ $project->stories->count() }}</span></td>
+							    	<td></td>
+							    	<td></td>
+							    </tr>
 								
 
 							@endforeach

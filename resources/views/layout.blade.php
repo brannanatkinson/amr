@@ -62,32 +62,31 @@
                              <img class="ui small image" src="http://res.cloudinary.com/brannanatkinson/image/upload/v1529866795/AAC/aacom_noservices_white.png" alt="">
                         </div>
                         <div class="right menu">
-                            @if (Auth::check() )
-                            <div class="item"><a href='/stories'>Mentions</a></div>
-                            <div class="item"><a href="/projects">Projects</a></div>
-                            <div class="item"><a href="/media">Media</a></div>
-                            @if ( Auth::user()->hasRole('siteadmin') )
-                                <div class="item">
-                                    {{Auth::user()->first_name}}
-                                </div>
-
-                                <div class="ui right dropdown item">
-                                    <i class=" cogs large icon"></i>
-                                    <div class="menu">
-                                        <div class="header">Mentions</div>
-                                        <a href='/stories/create' class="item">Add New Mention</a >
-                                        <div class="header">Clients</div>
-                                        <a href='/admin/clients' class="item">All Clients</a>
-                                        <a href='/admin/clients/new' class="item">Add New Client</a >
-                                        <div class="header">Users</div>
-                                        <a href='/admin/users' class="item">All Users</a>
-                                        <a href='/admin/users/new' class="item">Add New User</a >
-                                        <div class="header">Account</div>
-                                        <a href='/logout' class="item" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
-                                        <form id="logout-form" action="https://newmedia.dev/logout" method="POST" style="display: none;"><input type="hidden" name="_token" value="13woX1Yf0bEQTm0k9OzF7X4mef6CYDnvmrKFnvCB"></form>
-                                    </div>
-                                </div>
-                            @endif
+                            @if ( Auth::check() )
+                                @if (Auth::user()->login_link == 1)
+                                    <div class="item"><a href='/stories'>Mentions</a></div>
+                                    <div class="item"><a href="/projects">Projects</a></div>
+                                    <div class="item"><a href="/media">Media</a></div>
+                                    {{-- admin cog menu --}}
+                                    @if ( Auth::user()->hasRole('siteadmin') )
+                                        <div class="ui right dropdown item">
+                                            <i class=" cogs large icon"></i>
+                                            <div class="menu">
+                                                <div class="header">Mentions</div>
+                                                <a href='/stories/create' class="item">Add New Mention</a >
+                                                <div class="header">Clients</div>
+                                                <a href='/admin/clients' class="item">All Clients</a>
+                                                <a href='/admin/clients/new' class="item">Add New Client</a >
+                                                <div class="header">Users</div>
+                                                <a href='/admin/users' class="item">All Users</a>
+                                                <a href='/admin/users/new' class="item">Add New User</a >
+                                                <div class="header">Account</div>
+                                                <a href='/logout' class="item" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                                                <form id="logout-form" action="https://newmedia.dev/logout" method="POST" style="display: none;"><input type="hidden" name="_token" value="13woX1Yf0bEQTm0k9OzF7X4mef6CYDnvmrKFnvCB"></form>
+                                            </div>
+                                        </div>
+                                    @endif
+                                @endif
                             @endif
                         </div>
                     </div>
@@ -111,6 +110,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/SocialIcons/1.0.1/soc.min.js"></script>
     <script>
         $(document).ready(function(){
+            $('.ui.checkbox').checkbox();
             // $( "#datestart" ).datepicker();
             // $( "#dateend" ).datepicker();
             // $( "#story_date" ).datepicker();

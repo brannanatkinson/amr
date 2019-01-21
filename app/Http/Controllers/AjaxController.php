@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
+use Auth;
 use DB;
+use App\User;
 use App\Media;
 use App\Reporter;
 use App\Project;
@@ -83,6 +85,25 @@ class AjaxController extends Controller
                 'project_id' => $new_project->id,
                 'project_name' => $new_project->project_name
             ], 200);	
+    }
+    /**
+     * Process login_link from firstaccess.blade.php
+     * @var book $request->login_link
+     * @var user user authoized by 
+     */
+    public function loginlink(Request $request)
+    {
+        $user = User::find( Auth::id() );
+        if ( $request->login_link == 'true' ){
+            $user->login_link = 1;
+        }
+        if ( $request->login_link == 'false' ){
+            $user->login_link = 0;
+        } 
+        $user->save();
+        return response()->json([
+            'message' => $request->login_link
+        ], 200);
     }
 
 }

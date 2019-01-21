@@ -14,6 +14,7 @@ use App\Media;
 use App\Org;
 use App\Contact;
 use App\Metadata;
+use App\Events\NewMention;
 
 class StoryController extends Controller
 {
@@ -57,6 +58,7 @@ class StoryController extends Controller
 
         $clients = Client::all();
         $media = Org::orderBy('org_name', 'asc')->where('org_type', 'media')->get();
+
 
         return view('stories.create', compact('clients', 'media'));
         
@@ -118,6 +120,8 @@ class StoryController extends Controller
             $story->story_image = null;
             $story->save();
         }
+
+        event(new NewMention($story));
         // flash message about new story added
         return redirect('/stories');
     }

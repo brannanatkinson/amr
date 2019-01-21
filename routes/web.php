@@ -27,6 +27,7 @@ Route::group(['prefix' => 'ajax', 'middleware' => ['role:siteadmin']], function(
     Route::post('/get_projects', 'AjaxController@get_projects'); //retrieve projects where matches clientID
     Route::post('/create_project', 'AjaxController@create_project'); // add new project
     Route::post('/get_contacts', 'AjaxController@get_contacts'); // add new project
+    Route::post('/loginlink', 'AjaxController@loginlink'); // check login link
 });
 
 

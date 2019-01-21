@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>Your Atkinson Media Reports login link</title>
+        <title>New Metnion</title>
         <style>
             @import url('https://fonts.googleapis.com/css?family=Roboto');
         </style>
@@ -14,7 +14,8 @@
             </tr>
             <tr >
                 <td style="padding: 50px 0px;">
-                    <p style="font-family: 'Roboto';">Here is the <a href="{{$loginlink}}">login link</a> you requested for Atkinson Media Reports.</p>
+                    <p style="font-family: 'Roboto';">A new mention was added to Atkinson Media Reports</p>
+                    <a href="{{ $story->story_url }}"><p>Headline: {{ $story->headline() }}</p></a>
                 </td>
             </tr>
         </table>

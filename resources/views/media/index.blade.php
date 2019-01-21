@@ -40,13 +40,10 @@
 						            @endif
 							    </div>
 							    <div class="content">
-							        <a class="header">{{ $story->headline() }}</a>
+							        <a class="header" href="{{ $story->story_url }}">{{ $story->headline() }}</a>
 							        <div class="meta">
-							            <span>Description</span>
+							            <span>{{ $story->project->project_name }}</span>
 							        </div>
-								    <div class="extra">
-								        Additional Details
-								    </div>
 							    </div>
 							</div>
 						@endforeach

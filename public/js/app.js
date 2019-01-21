@@ -236,7 +236,7 @@ $(document).ready(function () {
 		});
 	}); // end $(mediaSelector).change
 
-	// Check if Twitter
+	// Get story details and add to Metadata
 
 	$("input[name='story_url']").change(function () {
 
@@ -306,6 +306,8 @@ $(document).ready(function () {
 		}
 	});
 
+	// Check if Twitter
+
 	$('.twitterDisplay').each(function () {
 		var urlCheck = $(this).html();
 
@@ -323,6 +325,15 @@ $(document).ready(function () {
 				$(this).html(data.html);
 			}
 		});
+	});
+
+	$('#login_link').change( function(){
+		console.log('#login_link');
+		if ( $('#login_link') == 1 ){
+			$('#btn_stories').removeClass('disabled');
+		} else {
+			$('#btn_stories').addClass('disabled');
+		}
 	});
 });
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))

@@ -24,6 +24,8 @@ class SigninController extends Controller
     {
         if ( User::where('email', '=', $request->email )->exists()) {
             $user = User::where('email', '=', $request->email)->first();
+            $user->login_link = 0; 
+            $user->save();
             $url = Url::signedRoute('signin.verify', ['id' => $user->id]);
             Mail::to($request->email)->send(new LoginLink($user, $url));
             $confirmation_details = [];

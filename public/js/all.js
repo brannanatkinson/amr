@@ -22680,5 +22680,25 @@ $('#addMeta').click(function(){
     }
 });
 
+$('#login_link').change( function(e){
+    console.log ( $('.ui.checkbox').checkbox('is checked') );
+    $.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
+    });
+    e.preventDefault();
+    $.ajax({
+        url: '/ajax/loginlink',
+        type: 'POST',
+        dataType: "json",
+        data: { '_token': $('meta[name="csrf-token"]').attr('content'),
+            //'user_id': {{ Auth::id() }},
+            'login_link': $('.ui.checkbox').checkbox('is checked') },
+        success: function(data){
+           $('#btn_stories').removeClass('disabled');
+        }
+    });
+});
+
 //add a row 
 
