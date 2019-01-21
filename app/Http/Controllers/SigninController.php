@@ -51,7 +51,7 @@ class SigninController extends Controller
         if ( $user->login_link == 0 ){
             return view('signin.firstaccess');
         } else {
-            return view('stories.index');
+            return redirect()->route('stories.index');
         }
         
     }
