@@ -30,7 +30,7 @@ class ScheduleTest extends Mailable
      */
     public function build()
     {
-        $date = CarbonImmutable::now();
+        $date = Carbon::now();
         $stories = App\Story::where( 'story_date', '>=', $date->sub('7 days')->calendar() );
         return $this->from('brannan@amyacommunications.com')
         ->subject('Schedule Test')
