@@ -34,7 +34,6 @@ class ScheduleTest extends Mailable
         $stories = Story::where( 'story_date', '>=', $date->subDays(7) )->get();
         return $this->from('brannan@amyacommunications.com')
         ->subject('Schedule Test')
-        ->view('emails.schedule')
-        ->with('stories');
+        ->view('emails.schedule', compact('stories'));
     }
 }
