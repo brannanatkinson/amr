@@ -2,7 +2,7 @@
 
 namespace App\Mail;
 
-use Story;
+use App\Story;
 use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
@@ -31,7 +31,7 @@ class ScheduleTest extends Mailable
     public function build()
     {
         $date = Carbon::now();
-        $stories = App\Story::where( 'story_date', '>=', $date->sub('7 days')->calendar() );
+        $stories = Story::where( 'story_date', '>=', $date->sub('7 days')->calendar() );
         return $this->from('brannan@amyacommunications.com')
         ->subject('Schedule Test')
         ->view('emails.schedule')
