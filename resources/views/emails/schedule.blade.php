@@ -16,7 +16,7 @@
                 <td style="padding: 50px 0px;">
                     <ul>
                     @foreach( $stories as $story )
-                        <li>{{ $story->headline() }}</li>
+                        <li>{{ $story->story_url }}</li>
                     @endforeach
                     </ul>
                 </td>
