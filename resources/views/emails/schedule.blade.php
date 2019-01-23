@@ -14,7 +14,11 @@
             </tr>
             <tr >
                 <td style="padding: 50px 0px;">
-                    <p style="font-family: 'Roboto';">This is a schedule test.</p>
+                    <ul>
+                    @foreach( $stories as $story )
+                        <li>{{ $story->headline() }}</li>
+                    @endforeach
+                    </ul>
                 </td>
             </tr>
         </table>
