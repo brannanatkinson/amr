@@ -28,6 +28,6 @@ class ScheduleTest extends Mailable
      */
     public function build()
     {
-        return $this->from('brannan@amyacommunications.com')->subj('Scheduler test')->view('emails.schedule');
+        return $this->from('brannan@amyacommunications.com')->view('emails.schedule');
     }
 }
