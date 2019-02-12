@@ -94,12 +94,7 @@ class AjaxController extends Controller
     public function loginlink(Request $request)
     {
         $user = User::find( Auth::id() );
-        if ( $request->login_link == 'true' ){
-            $user->login_link = 1;
-        }
-        if ( $request->login_link == 'false' ){
-            $user->login_link = 0;
-        } 
+        $user->login_link = 1;
         $user->save();
         return response()->json([
             'message' => $request->login_link

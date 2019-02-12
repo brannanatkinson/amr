@@ -313,7 +313,7 @@ $('#addMeta').click(function(){
     }
 });
 
-$('#login_link').change( function(e){
+$('#login_link').click( function(e){
     console.log ( $('.ui.checkbox').checkbox('is checked') );
     $.ajaxSetup({
     headers: {
