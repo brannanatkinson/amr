@@ -51,7 +51,7 @@ class ClientController extends Controller
      */
     public function show($id)
     {
-        $stories = Story::where('client_id', $id)->orderBy('story_date', 'desc')->simplePaginate(15);
+        $stories = Story::where('client_id', $id)->orderBy('story_date', 'desc')->Paginate(15);
         $clientName = Client::find($id)->getClientName();
         return view('stories.index', compact('stories', 'clientName'));
     }
