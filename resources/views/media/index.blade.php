@@ -1,61 +1,35 @@
 @extends('layout')
 
 @section('content')
-
-
-
-	
+<a name="top"></a>
 <div class="ui grid container">
-	<div class="row">
-		<div class="sixteen wide columns">
-			<h2>Media Outlets</h4>
-		</div>
+	<div class="sixteen wide column">
+		<h2>Media Outlets</h4>
 	</div>
-
-
-	<div class="row">
-		<div class="sixteen wide columns">
+	<div class="ui horizontal bulleted link list">
+		@foreach ($outlets as $outlet)
+			<div class="item"><a href="#{{$outlet->id}}">{{ $outlet->org_name }}</a></div>
+		@endforeach
+	</div>
+	<div class="sixteen wide column">
 			@foreach ($outlets as $outlet)
-				<hr>
-				<h2 style="font-weight: bolder; text-align: center; padding-top: 20px;">{{ $outlet->org_name }}</h2> 
-				<div style="text-align: center; margin-top: -10px; padding-bottom: 20px;" class="media__count">~ Mentions: {{ $outlet->stories->count() }} ~</div> 
-
+					<a name="{{$outlet->id}}"></a>
+					<h2 style="font-weight: bolder; padding-top: 20px;">{{ $outlet->org_name }} <a class="ui label" style="float:right; " href="#top">Back to Top</a></h2> 
+					<div style="margin-top: -10px; " class="media__count">~ Mentions: {{ $outlet->stories->count() }} ~</div> 
 				@if ($outlet->stories->count() > 0)
-
-					<div class="row small-up-2 medium-up-3 large-up-4">
-                        <div class="ui items">
+                        <ul>
 						@foreach ($outlet->stories as $story)
-							<div class="item">
-							    <div class="image">
-							        @if(strpos($story->story_url, 'twitter') == true )
-							    	    <img style="height: 100px; object-fit: cover;" src="https://placehold.it/600/1CA1F2/ffffff" alt="" >
-							    	@else
-								        @if ( is_null($story->story_image) )
-											<img style="height: 100px; object-fit: cover;" src="{{ url ('public/img/' . $story->id . '.jpg') }}" alt="">																			
-									    @else
-											<img style="height: 100px; object-fit: cover;" src="{{ $story->story_image }}" alt="" >
-										{{-- @elseif(strpos($story->story_url, 'twitter') == true )
-											<h3>placeholder:twitter</h3> --}}
-										@endif
-						            @endif
-							    </div>
-							    <div class="content">
-							        <a class="header" href="{{ $story->story_url }}">{{ $story->headline() }}</a>
-							        <div class="meta">
-							            <span>{{ $story->project->project_name }}</span>
-							        </div>
-							    </div>
-							</div>
+							
+				        	<li style="margin-bottom: 8px;"><a href="{{ $story->story_url }}">{{ $story->headline() }}</a><br> <span>{{ \Carbon\Carbon::parse($story->story_date)->toFormattedDateString() }} -- {{ $story->project->project_name }}</span></li>
+		
 						@endforeach
-						</div>
+						</ul>
 
 
-					</div>
 
 				@endif
 
 			@endforeach
-		</div>
 	</div>
 		
 

@@ -23,20 +23,13 @@
 				@foreach($clients as $client)
 					@if($client->projects->count() > 0)
 					    <h3>{{ $client->client_name }}</h3>
-						<table class="ui celled table">
-							<thead>
-								<tr>
-									<th width="80%">Project</th>
-									<th width="20%">Mentions</th>
-							    </tr>
-							</thead>
+						<ul>
 							@foreach($client->projects as $project)
 							    <tr>
-							    	<td><a href="/projects/{{$project->id}}/">{{ $project->project_name }}</a> </td>
-							    	<td style="text-align: center;">{{ $project->stories->count() }}</td>
+							    	<li><a href="/projects/{{$project->id}}/">{{$project->project_name}}</a> <span class="ui grey circular label">{{$project->stories->count()}}</span></li>
 							    </tr>
 							@endforeach
-						</table>
+						</ul>
 					@endif 
 				@endforeach
 			@else
