@@ -325,8 +325,7 @@ $('#login_link').click( function(e){
         type: 'POST',
         dataType: "json",
         data: { '_token': $('meta[name="csrf-token"]').attr('content'),
-            //'user_id': {{ Auth::id() }},
-            'login_link': $('.ui.checkbox').checkbox('is checked') },
+            //'login_link': $('.ui.checkbox').checkbox('is checked') },
         success: function(data){
            $('#btn_stories').removeClass('disabled');
         }
