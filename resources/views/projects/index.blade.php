@@ -26,18 +26,14 @@
 						<table class="ui celled table">
 							<thead>
 								<tr>
-									<th width="40%">Project</th>
-									<th width="10%">Mentions</th>
-									<th width="25%">First Mention</th>
-									<th width="25%">Last Mention</th>
+									<th width="80%">Project</th>
+									<th width="20%">Mentions</th>
 							    </tr>
 							</thead>
 							@foreach($client->projects as $project)
 							    <tr>
 							    	<td><a href="/projects/{{$project->id}}/">{{ $project->project_name }}</a> </td>
 							    	<td style="text-align: center;">{{ $project->stories->count() }}</td>
-							    	<td></td>
-							    	<td></td>
 							    </tr>
 							@endforeach
 						</table>

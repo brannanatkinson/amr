@@ -61,7 +61,7 @@
 		
 	</div>
 
-{{$stories->links()}}
+{{ $stories->links() }}
 
 
 		</div>
