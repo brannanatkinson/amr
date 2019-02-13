@@ -22680,22 +22680,23 @@ $('#addMeta').click(function(){
     }
 });
 
-$('#login_link').change( function(e){
-    console.log ( $('.ui.checkbox').checkbox('is checked') );
+$('#login_link').click( function(e){
+    console.log ( 'clicked' );
     $.ajaxSetup({
-    headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
     });
-    e.preventDefault();
+    //e.preventDefault();
     $.ajax({
-        url: '/ajax/loginlink',
+        url: '/ajax/loginlink/',
         type: 'POST',
         dataType: "json",
-        data: { '_token': $('meta[name="csrf-token"]').attr('content'),
-            //'user_id': {{ Auth::id() }},
-            'login_link': $('.ui.checkbox').checkbox('is checked') },
+        data: { 
+            '_token': $('meta[name="_token"]').attr('content'),
+            'user': '1'
+        },
         success: function(data){
-           $('#btn_stories').removeClass('disabled');
+            console.log(data.message);
         }
     });
 });

@@ -8,9 +8,14 @@ class Org extends Model
 {
     protected $fillable = ['org_name'];
 
-    public function stories()
+    public function stories($id)
     {
-    	return $this->hasMany('App\Story')->orderBy('story_date', 'desc');
+        if (!is_null($id)){
+            return $this->hasMany('App\Story')->where('client_id', $id)->orderBy('story_date', 'desc');
+        } else {
+            return $this->hasMany('App\Story')->orderBy('story_date', 'desc');
+        }
+    	
     }
 
     public function contacts()

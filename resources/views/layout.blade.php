@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- CSRF Token -->
-    <meta name="_token" content="{{ csrf_token() }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Atkinson Media Reports -- Amy Atkinson Communications') }}</title>
 
@@ -66,7 +66,6 @@
                             <div class="twelve wide computer only column">
                                 <div class="ui text menu">
                                     @if ( Auth::check() )
-                                        @if (Auth::user()->login_link == 1)
                                             <div class="ui right item"><a href='/stories'>Mentions</a></div>
                                             <div class="ui right item"><a href="/projects">Projects</a></div>
                                             <div class="ui right item"><a href="/media">Media</a></div>
@@ -89,7 +88,6 @@
                                                         <form id="logout-form" action="https://newmedia.dev/logout" method="POST" style="display: none;"><input type="hidden" name="_token" value="13woX1Yf0bEQTm0k9OzF7X4mef6CYDnvmrKFnvCB"></form>
                                                     </div>
                                                 </div>
-                                            @endif
                                         @endif
                                     @endif
                                 </div>

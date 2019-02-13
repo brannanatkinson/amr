@@ -93,11 +93,12 @@ class AjaxController extends Controller
      */
     public function loginlink(Request $request)
     {
+        //dd($request);
         $user = User::find( Auth::id() );
         $user->login_link = 1;
         $user->save();
         return response()->json([
-            'message' => $request->login_link
+            'message' => 'success'
         ], 200);
     }
 

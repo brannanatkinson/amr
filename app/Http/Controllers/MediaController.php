@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
 use App\Media;
 use App\Org;
+use App\Story;
 use DB;
 
 class MediaController extends Controller
@@ -16,8 +18,26 @@ class MediaController extends Controller
      */
     public function index()
     {
-        $outlets = Org::orderBy('org_name', 'asc')->where('org_type', 'media')->get();
-        return view('media.index', compact('outlets'));
+        $user = Auth::user();
+        if ( $user->hasRole('siteadmin') ){
+            $outlets = Org::orderBy('org_name', 'asc')->where('org_type', 'media')->get();
+            return view('media.index', compact('outlets'));
+        } else {
+            $orgs = DB::table('stories')
+              ->join('orgs', 'stories.org_id', '=', 'orgs.id')
+              ->where('stories.client_id', '=', $user->client_id)
+              ->select('orgs.id', 'orgs.org_name')
+              ->distinct()
+              ->orderBy('orgs.org_name')
+              ->get();
+            $outlets = Org::select('*')
+                ->whereIn('id', $orgs->pluck('id'))
+                ->orderBy('org_name')
+                ->get();
+            //dd($outlets);
+            return view('media.index', compact('outlets'));
+        }
+        
         //return compact('outlets');
     }
 

@@ -21,7 +21,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
-Route::group(['prefix' => 'ajax', 'middleware' => ['role:siteadmin']], function() {
+Route::group(['prefix' => 'ajax'], function() {
 	Route::post('/create_media', 'AjaxController@create_media'); //add new media
     Route::post('/get_urldata', 'AjaxController@get_urldata'); //check a URL and json with title and images
     Route::post('/get_projects', 'AjaxController@get_projects'); //retrieve projects where matches clientID
@@ -98,7 +98,7 @@ Route::get('/signin', 'SigninController@index');
 Route::post('/signin', 'SigninController@confirm');
 Route::get('/signin/{id}', 'SigninController@verify')->name('signin.verify');
 
-Route::get('/media', 'MediaController@index')->middleware(['auth', 'role:siteadmin']);
+Route::get('/media', 'MediaController@index');
 // Route::post('/stories', 'StoryController@store')->name('stories.store')->middleware(['auth', 'role:siteadmin']);
 // Route::get('/stories/create', 'StoryController@create')->name('stories.create')->middleware(['auth', 'role:siteadmin']);
 // Route::get('/stories/{story}', 'StoryController@show')->name('stories.show')->middleware(['auth', 'role:siteadmin']);
