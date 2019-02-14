@@ -34,7 +34,7 @@
 					    	    <img style="height: 200px; object-fit: cover;" src="https://placehold.it/600/1CA1F2/ffffff" alt="" >
 					    	@else
 						        @if ( is_null($story->story_image) )
-									<img style="height: 200px; object-fit: cover;" src="{{ url ('public/img/' . $story->id . '.jpg') }}" alt="">																			
+									<img style="height: 200px; object-fit: cover;" src="{{ url ('/img/' . $story->id . '.jpg') }}" alt="">																			
 							    @else
 									<img style="height: 200px; object-fit: cover;" src="{{ $story->story_image }}" alt="" >
 								{{-- @elseif(strpos($story->story_url, 'twitter') == true )
