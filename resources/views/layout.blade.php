@@ -65,8 +65,8 @@
                                     <a id="mobile_item" class="ui right item"><i class="bars icon"></i></a>
                                 </div>
                             </div>
-                            <div class="twelve wide computer only column">
-                                <div class="ui text menu">
+                            <div class="right floated six wide computer only column">
+                                <div class="ui right text menu">
                                     @if ( Auth::check() )
                                             <div class="ui right item"><a href='/stories'>Mentions</a></div>
                                             <div class="ui right item"><a href="/projects">Projects</a></div>
