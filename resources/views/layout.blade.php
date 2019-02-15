@@ -46,9 +46,11 @@
             <a href='/stories' class="item">Mentions</a>
             <a href='/projects' class="item">Projects</a>
             <a href='/media' class="item">Media</a>
-            {{-- @if ( Auth::user()->hasRole('siteadmin') )
-               <a href="/clients">Clients</a>
-            @endif --}}
+            @if ( Auth::user() )
+                @if ( Auth::user()->hasRole('siteadmin') )
+                   <a href="/clients" class="item">Clients</a>
+                @endif
+            @endif
         </div>
         <div class="pusher">
             <div class="topbar">
