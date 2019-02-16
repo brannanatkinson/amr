@@ -2,161 +2,188 @@
 
 @section('content')
 
-		<div class="row">
-			<div class="large-12 columns">
-				<h1 id="page_title">Edit Story</h1>
+	
+	<form action="/stories/{{ $story->id }}" method="POST" enctype="multipart/form-data" class="ui form">
+			{{ csrf_field() }}
+            {{ method_field('PATCH')}}
+			<div class="ui two column grid">
+				<div class="ui left floated column">
+					<h1 class="ui header">Update Mention</h1>
+				</div>
+				<div class="right floated right aligned column">
+					<button type="submit" class='ui button'>Update Mention</button>
+				</div>
 			</div>
-		</div>
-
-		@foreach ($stories as $story)
-
-		<form action="/stories/{{ $story->id}}" method="POST" enctype="multipart/form-data">{{ csrf_field() }}{{ method_field('PATCH')}}
-		<div class="row">
-			<div class="large-6 columns">
-				<label for="datepicker">Story Date</label>
-				<input type="text" id="story_date" name="story_date" value="{{ $story->story_date }}">
-			</div>
-		</div>
-
-		<div class="row">
-			<div class="large-6 columns">
-				<label for="client_id">Client</label>
-				<select name="client_id" id="clientSelect">
-					<option value="" disabled selected hidden>Choose client...</option>
-					@foreach ($clients as $client)
-						@if ($client->id == $story->client_id)
-							<option value="{{ $client->id }}" selected>{{ $client->client_name }}</option>
-						@else
-							<option value="{{ $client->id }}">{{ $client->client_name }}</option>
-						@endif
-					@endforeach
-				</select>
-			</div>
-			<div class="large-6 columns">
-				{{-- Project --}}
-				<label for="project_id">Client Project</label>
-				<select name="project_id" id="projectSelect">
-
-					<option value="" disabled selected hidden>Select project...</option>
-					@foreach ($projects as $project)
-						@if ( $project->client_id == $story->client_id )
-							@if ( $story->project_id == $project->id ) 
-								<option value="{{ $project->id }}" selected>{{ $project->project_name }}</option>
-							@else 
-								<option value="{{ $project->id }}" >{{ $project->project_name }}</option>
-							@endif 
-						@endif
-					@endforeach
-				  	   
-				</select>
-				<button type="button" class="button" id="addNewProject">Add New Project</button>
-			</div>
-
-		</div>
-		<div class="row">
-			<div class="large-12 columns">
+			<div class="three fields">
+			    <div class="eight wide field">
 				<label for="story_url">Story URL</label>
-				<input type="text" name="story_url" value="{{ $story->story_url }}">
+				<input class=" " type="text" value="{{ $story->story_url }}" id="story_url" name="story_url">
+			    </div>
+			    <div class="four wide field">
+				    <label for="datepicker">Date</label>
+				    <input type="text"  value="{{ $story->story_date }}" id="story_date" name="story_date">
+			    </div>
+			{{-- category --}}
+			    <div class="three wide field">
+				    <label for="datepicker">Category</label>
+				    <div class="inline fields">
+					    <div class="field">
+					        <div class="ui radio checkbox">
+						        <input type="radio" name="story_category" value="story">
+					            <label for="">Story</label>
+					        </div>
+				        </div>
+				        <div class="field">
+					        <div class="ui radio checkbox">
+						        <input type="radio" name="story_category" value="social">
+					            <label for="">Social</label>
+					        </div>
+				        </div>
+				        <div class="field">
+    					    <div class="ui radio checkbox">
+    						    <input type="radio" name="story_category" value="calendar">
+    					        <label for="">Calendar</label>
+    					    </div>
+				        </div>
+				    </div>
+			    </div>
 			</div>
-		</div>
-		<div class="row">
-			<div class="large-12 columns">
-				{{-- twitter display --}}
-				<div id="twitterOembed"></div>
-				<label for="story_headline">Story Headline</label>
-				<input type="text" name="story_headline" value="{{ $story->story_headline }}">
-			</div>
-		</div>
-		<div class="row">
-				<div class="large-8 columns">
-					@if ( is_null($story->story_image) )
-						<img id="ogImage" src="{{ url ('/img/' . $story->id . '.jpg') }}" alt="" width="600">									
-					@else
-						<img id="ogImage" src="{{ $story->story_image }}" alt="" width="600">
-					@endif
-					<input type="hidden" id="story_image" name="story_image" value="{{ $story->story_image }}" readonly>
+			{{-- primary section --}}
+			<div class="ui two column grid">
+				<div class="six wide column">
+					<div class="field">
+                        <div style="width:100%; height:300px; object-fit: cover;">
+                            @if ( is_null($story->story_image) )
+                                <img id="ogImage" src="{{ url ('/img/' . $story->id . '.jpg') }}" style="width: 100%; object-fit:cover" alt="">
+                                <input type="hidden" id="story_image" name="story_image">                              
+                            @else
+                                <img id="ogImage" src="{{ $story->story_image }}" style="width: 100%; object-fit:cover" alt="">
+                                <input type="hidden"  value="{{ $story->story_image}}" id="story_image" name="story_image">
+                            @endif
+
+                        </div>
+                        <input type="file" name="story_file" id="story_file" onchange="readURL(this);">
+					</div>
 				</div>
-				<div class="large-4 columns">
-					<h3>Add a photo</h3>
-					<input type="file" name="story_file" id="story_file" onchange="readURL(this);">
+				<div class="ten wide column">
+					<div class="fields">	
+        				<div class="eight wide field">
+        					<label for="clientSelect">Client</label>
+        					<select name="client_id" id="clientSelect" class="ui dropdown">
+        						<option value="" disabled selected hidden>Choose client...</option>
+        						@foreach ( App\Client::all() as $client)
+                                    @if ($client->id == $story->client_id)
+                                        <option value="{{ $client->id }}" selected>{{ $client->client_name }}</option>
+                                    @else
+                                        <option value="{{ $client->id }}">{{ $client->client_name }}</option>
+                                    @endif
+                                @endforeach
+        					</select>
+        					
+        				</div>
+        				<div class="ten wide field">
+        					<label for="projectSelect">Project <a href="#"><i id="newProject" class="ui grey plus circle icon"></i></a></label>
+        					<select name="project_id" id="projectSelect" class="ui dropdown">
+            					@foreach ( App\Project::all() as $project)
+                                    @if ( $project->client_id == $story->client_id )
+                                        @if ( $story->project_id == $project->id ) 
+                                            <option value="{{ $project->id }}" selected>{{ $project->project_name }}</option>
+                                        @else 
+                                            <option value="{{ $project->id }}" >{{ $project->project_name }}</option>
+                                        @endif 
+                                    @endif
+                                @endforeach
+        					</select>
+        				</div>
+        			</div>
+        			<div class="two fields">	
+        				<div class="ten wide field">
+        					<label for="mediaSelect">Media <a href="#"><i id="newMedia" class="ui grey plus circle icon"></i></a></label>
+        					<select name="media_ident" id="mediaSelect" class="ui dropdown">
+        						<option value="" disabled selected hidden>Choose media outlet...</option>
+        						@foreach ( App\Org::all() as $outlet)
+                                    @if ( $outlet->id == $story->org_id )
+                                        <option value="{{ $outlet->id }}" selected>{{ $outlet->org_name }}</option>
+                                    @else
+                                        <option value="{{ $outlet->id }}">{{ $outlet->org_name }}</option>
+                                    @endif
+                                @endforeach
+        					</select>	
+        				</div>
+        				<div class="four wide field">
+        					<label>Paid</label>
+        					<div class="ui toggle checkbox">
+                                <input name="story_paid" type="checkbox" tabindex="0" class="hidden">
+                                
+                            </div>
+        				</div>
+        			</div>
 				</div>
 			</div>
-		<div class="row">
-			<div class="large-12 columns">
-				<label for="story_description">Story Description (typically story lede)</label>
-				<input type="text" name="story_description" value="{{ $story->story_description }}">
-			</div>
-		</div>
-		<div class="row">
-			<div class="large-6 columns">
-				{{-- Media --}}
-				<label for="media_id">Media</label>
-				<select name="media_id" id="mediaSelect">
 
-					<option value="" disabled selected hidden>Select media outlet...</option>
-					
-					@foreach ($orgs as $outlet)
-						@if ( $outlet->id == $story->org_id )
-							<option value="{{ $outlet->id }}" selected>{{ $outlet->org_name }}</option>
-						@else
-							<option value="{{ $outlet->id }}">{{ $outlet->org_name }}</option>
-						@endif
-					@endforeach
+            {{-- meta data --}}
+			<h4 class="ui dividing header">Meta Data</h4>
+			<input type="hidden" name="metaCount" id="metaCount" value="{{ $story->metadata->count() }}">
+			<table id="metaTable" class="ui striped celled table">
+				<thead>
+    				<tr>
+    				    <th>Meta Key</th>
+    				    <th colspan="2">Meta Value</th>
+    			    </tr>
+    			</thead>
 
-				</select>
-
-				<button type="button" id="addNewMedia" class="button">Add New Media</button>
-			</div>
-
-			<div class="large-6 columns">
-				<label for="contactSelect">Choose Contact</label>
-				<select name="contact_id" id="contactSelect">
-					<option value="0" selected="selected" disabled hidden>Choose contact...</option>
-
-					@foreach ($contacts as $contact)
-						@if ( $contact->id == $story->contact_id )
-							<option value="{{ $contact->id }}" selected>{{ $contact->contact_first_name }} {{ $contact->contact_last_name }}</option>
-						@else
-							<option value="{{ $contact->id }}">{{ $contact->contact_first_name }} {{ $contact->contact_last_name }}</option>
-						@endif
-					@endforeach
-					
-				</select>
-				{{-- <button type="button" id="addNewMedia" class="button">Add New Media</button> --}}
-			</div>
+                @foreach( $story->metadata as $meta )
+				<tr style="">
+					<td class="collapsing">
+						<select name="metaKey[]" class="ui dropdown" id="metaKey1">
+							<option value="headline" @if ($meta->meta_type=='headline') selected @endif>Headline</option>
+							<option value="description" @if ($meta->meta_type=='description') selected @endif>Description</option>
+							<option value="note" @if ($meta->meta_type=='note') selected @endif>Note</option>
+							<option value="attachment" @if ($meta->meta_type=='attachment') selected @endif>Attachment</option>
+						</select>
+					</td>
+					<td>
+						<input name="metaValue[]" type="text" value="{{ $meta->meta_value }}" id="metaValue1">
+					</td>
+                    <td class="right collapsing">
+                        <i class="ui minus circle icon"></i>
+                    </td>
+				</tr>
+                @endforeach
+			</table>
+			<h5><i id="addMeta" class="ui plus icon"></i> Add Meta Data</h5>
 			
-		</div>
-		<div class="row">
-			<div class="large-6 columns">
-				<label for="story_notes">Notes</label>
-				<textarea name="story_notes" id="story_notes" cols="30" rows="10">{{ $story->story_notes }}</textarea>
+			<div class="ui divider"></div>
+			<div class="ui grid">
+				<div class="right aligned column">
+					<button type="submit" class='ui button'>Update Mention</button>
+				</div>
 			</div>
-		</div>
-		<div class="row">
-			<div class="large-12 columns">
-				<button type="submit" class="button primary">Update Mention</button>
-			</div>
-		</div>		
-		</form>
+	</form>	
+		
 		
 		{{-- modal for Media --}}
-		<div class="reveal" id="mediaModal" data-reveal>
-		  	<form action="">
-		  	{{ csrf_field() }}
-		  	<label for="addMedia">Add Media</label>
-			<input type="text" name="addMedia" id="addMedia">
-			<label for="mediaURL">Media URL</label>
-			<input type="text" name="mediaURL" id="mediaURL">
-		  	<button id='btn-save-media' class='button success'>Save New Media</button>
-		  	<button class="close-button" data-close aria-label="Close modal" type="button">
-			  <span aria-hidden="true">&times;</span>
-			</button>
-		  </form>
+		<div class="ui mini modal" id="mediaModal" data-reveal>
+			<h4 class="header">Add New Outlet</h4>
+			<div class="content">
+    		  	<form action="" class="ui form">
+    		  	{{ csrf_field() }}
+          		  	<div class="field">
+          		  	    <label for="addMedia">Media Name</label>
+          			    <input type="text" name="addMedia" id="addMedia">
+          			</div>
+          			<div class="field">
+          			    <label for="mediaURL">Media URL</label>
+          			    <input type="text" name="mediaURL" id="mediaURL">
+          			</div>
+          		  	<button id='btn-save-media' class='ui button'>Save New Media</button>
+    		    </form>
+		    </div>
 
 		</div>
 
 		{{-- modal for Reporters --}}
-		<div class="reveal" id="reporterModal" data-reveal>
+		<div class="ui modal" id="reporterModal" data-reveal>
 		  	<form action="">
 		  	{{ csrf_field() }}
 			<label for="addReporterFirst">Reporter First Name</label>
@@ -172,20 +199,21 @@
 		</div>
 
 		{{-- modal for Projects --}}
-		<div class="reveal" id="projectModal" data-reveal>
-		  	<form action="">
-		  	{{ csrf_field() }}
-			<label for="addProject">New Project</label>
-			<input type="text" name="project_name">
-		  	<button id="btn-save-project" type="button" class='button success'>Save New Project</button>
-		  	<button class="close-button" data-close aria-label="Close modal" type="button">
-			  <span aria-hidden="true">&times;</span>
-			</button>
-		  </form>
+		<div class="ui mini modal" id="projectModal" data-reveal>
+			<div class="header">Add a New Project</div>
+			<div class="content">
+    		  	<form action="" class="ui form">
+        		  	{{ csrf_field() }}
+        		  	
+        		  	<div class="field">
+        		  		<label for="">Project Name</label>
+        			    <input type="text" name="project_name">
+        		  	</div>
+        		  	<button id="btn-save-media" type="submit" class='ui button'>Save New Media</button>
+    		    </form>
+    		</div>
 
 		</div>
-
-		@endforeach
 
 
 
@@ -193,5 +221,6 @@
 
 
 	</div>
+</div>
 
 @stop

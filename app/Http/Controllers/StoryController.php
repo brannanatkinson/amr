@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Arr;
 use App\Story;
 use DB;
 use Auth;
@@ -29,7 +30,7 @@ class StoryController extends Controller
 
         if ( $user->hasRole('siteadmin') ){
 
-            $stories = Story::orderBy('story_date', 'desc')->paginate(15);
+            $stories = Story::orderBy('story_date', 'desc')->simplePaginate(15);
             //$stories = $first_stories::paginate(15);
 
 
@@ -40,7 +41,7 @@ class StoryController extends Controller
 
 
             // use >client_id to get data
-            $stories = Story::where('client_id', $user->client_id)->orderBy('story_date', 'desc')->Paginate(15);
+            $stories = Story::where('client_id', $user->client_id)->orderBy('story_date', 'desc')->simplePaginate(15);
         }
 
         return view('stories.index', compact('stories', 'clientName'));
@@ -145,32 +146,8 @@ class StoryController extends Controller
      */
     public function edit($id)
     {
-        //display story form with story data
-
-        $clients = DB::table('clients')->orderby('client_name')->get();
-
-        $orgs = DB::table('orgs')->orderby('org_name')->get();
-
-        $projects = DB::table('projects')->orderby('project_name')->get();
-
-        $media_id = Story::find($id)->org->id;
-
-        $contacts = Contact::where('org_id', $media_id)->orderBy('contact_last_name')->get();
-
-        $stories = DB::table('stories')
-            ->leftjoin('orgs', 'stories.org_id', '=', 'orgs.id')
-            ->leftjoin('clients', 'stories.client_id', '=', 'clients.id')
-            ->leftjoin('projects', 'stories.project_id', '=', 'projects.id')
-            ->select('stories.*')
-            ->where('stories.id','=',$id)
-            ->get();
-            //dd($story,$clients, $orgs, $projects, $contacts);
-            
-
-
-        return view('stories.edit', compact('stories', 'clients', 'orgs', 'projects', 'contacts'));
-
-        //return compact('stories', 'clients', 'media', 'projects');
+        $story = Story::find($id);
+        return view('stories.edit', compact('story'));
     }
 
     /**
@@ -183,39 +160,47 @@ class StoryController extends Controller
     public function update(Request $request, $id)
     {
         //update story record in the database
-
         $date_submitted = $request->story_date;
         $date_formatted = date("Y-m-d", strtotime($date_submitted));
 
+        $story = Story::where('id', $id)
+            ->update([
+                'story_date' => $date_formatted,
+                'story_url' => $request->story_url,
+                'story_headline' => $request->story_headline,
+                'client_id' => $request->client_id,
+                'org_id' => $request->media_ident,
+                'story_notes' => $request->story_notes,
+                'story_image' => $request->story_image,
+                'story_description' => $request->story_description,
+                'project_id' => $request->project_id,
+                'contact_id' => $request->contact_id
+            ]);
+
+        $story = Story::find($id);
+
+        if ($request->metaCount >0 )
+        {
+            Metadata::where('story_id', $id)->delete();
+            $for_meta_count = $request->metaCount - 1;
+            for($i=0; $i <= $for_meta_count; $i++)
+            {
+                $metadata = Metadata::create([
+                    'story_id' => $id,
+                    'meta_type' => $request->metaKey[$i],
+                    'meta_value' => $request->metaValue[$i]
+                ]);
+            }
+        }
+
         if (!is_null( $request->story_file) ){ 
-
-            $imageName = $id . '.jpg';
-
+            $imageName = $story->id . '.jpg';
             $request->file('story_file')->move(
                 base_path() . '/public/img/', $imageName
             );
-            
-            $set_story_image = null;
-
-        } else {
-
-            $set_story_image = $request->story_image;
+            $story->story_image = null;
+            $story->save();
         }
-
-        Story::where('id', $id)
-            ->update([
-                'story_date' => $date_formatted,
-                'client_id' => $request->client_id,
-                'project_id' => $request->project_id,
-                'story_url' => $request->story_url,
-                'story_headline' => $request->story_headline,
-                'story_image' => $set_story_image,
-                'story_description' => $request->story_description,
-                'org_id' => $request->media_id,
-                'story_notes' => $request->story_notes,
-                'contact_id' => $request->contact_id
-
-            ]);
 
         return redirect('/stories');
        
@@ -229,6 +214,8 @@ class StoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $story = Story::find($id)->delete();
+        $metadata = Metadata::where('story_id',$id)->delete();
+        return redirect('/stories');
     }
 }

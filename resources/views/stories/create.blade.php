@@ -51,8 +51,11 @@
 			<div class="ui two column grid">
 				<div class="six wide column">
 					<div class="field">
-						<img src="" alt="" id="ogImage" style="width:100%; height:300px; background-color: #eee;">
+                        <div style="width:100%; height:300px; ">
+                            <img src="" alt="" id="ogImage" sbackground-color: #eee;">
+                        </div>
 						<input type="hidden" id="story_image" name="story_image">
+                        <input type="file" name="story_file" id="story_file" onchange="readURL(this);">
 					</div>
 				</div>
 				<div class="ten wide column">

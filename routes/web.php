@@ -36,7 +36,7 @@ Route::post('/stories', 'StoryController@store')->name('stories.store')->middlew
 Route::get('/stories/create', 'StoryController@create')->name('stories.create')->middleware(['auth', 'role:siteadmin']);
 Route::get('/stories/{story}', 'StoryController@show')->name('stories.show')->middleware(['auth', 'role:siteadmin']);
 Route::patch('/stories/{story}', 'StoryController@update')->name('stories.update')->middleware(['auth', 'role:siteadmin']);
-Route::delete('/stories/{story}', 'StoryController@destroy')->name('stories.destroy')->middleware(['auth', 'role:siteadmin']);
+Route::get('/stories/{story}/delete', 'StoryController@destroy')->name('stories.destroy')->middleware(['auth', 'role:siteadmin']);
 Route::get('/stories/{story}/edit', 'StoryController@edit')->name('stories.edit')->middleware(['auth', 'role:siteadmin']);
 
 

@@ -73,7 +73,7 @@ class ProjectController extends Controller
         if ( $user->hasRole('siteadmin') ){
 
             $project = Project::find($id);
-            $stories = Story::where('project_id', '=', $id)->orderBy('story_date', 'desc')->paginate(15);
+            $stories = Story::where('project_id', '=', $id)->orderBy('story_date', 'desc')->simplePaginate(15);
             //return view('projects.show', compact('project'));
             return view('stories.index', compact('stories', 'project'));
 

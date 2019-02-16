@@ -134,11 +134,15 @@
                     .sidebar('toggle');
                 ;
             });
-            // $( "#datestart" ).datepicker();
-            // $( "#dateend" ).datepicker();
-            // $( "#story_date" ).datepicker();
-            // $('.ui.checkbox').checkbox();
-            // $('.ui.dropdown').dropdown();
+            $('.deleteStory').click(function(){
+                console.log(this.dataset.id);
+                //$('#modalID').attr('href', '/stories/');
+                $('#modalID').attr('href', '/stories/' + this.dataset.id + '/delete');
+                $('.ui.basic.modal')
+                  .modal('show')
+                ;
+            });
+            
             
         });
     </script>

@@ -3,12 +3,15 @@
 @section('content')
 	<div class="ui container">
 		    @if (\Request::is('projects/*'))
-			    <h1>Project -- {{ $project->project_name }}</h1>
+			    <h1>Mentions for {{ $project->project_name }}</h1>
 			@else 
-				@if ( Auth::user()->hasRole('siteadmin') ) 
-					<h1>Mentions for All Clients Test</h1>
-				@else
-					{{-- <h1>Media -- {{ $clientName->client_name }}</h1> --}}
+				@if ( Auth::user()->hasRole('siteadmin') && \Request::is('clients/*') ) 
+				    @php
+				    	$url = explode('/', request()->path() );
+				    	$client = array_pop($url);
+				    @endphp
+					<h1>Mentions for {{ App\Client::find($client)->client_name }}</h1>
+				
 				@endif
 			@endif
 		<div class="ui three stackable cards">
@@ -52,7 +55,12 @@
 					    <div class="extra content">
 					        {{ $story->project->project_name }}
 					        @if ( Auth::user()->hasRole('siteadmin') ) 
-					        <p>{{ $story->client->client_name }}</p>
+						        <p>{{ $story->client->client_name }}</p>
+					        @endif
+					        @if ( Auth::user()->hasRole('siteadmin') ) 
+					            <a class="deleteStory right floated ui button" data-id="{{ $story->id }}">Delete</a>
+						        <a class="right floated ui button" href="/stories/{{ $story->id }}/edit">Edit</a>
+
 					        @endif
 					    </div>
 			    </div>
@@ -69,5 +77,19 @@
 		
 
 	</div>
-
+<div class="ui basic modal">
+      <div class="ui icon header">
+          Are you sure you want to delete this story?
+      </div>
+      <div class="actions">
+        <div class="ui red basic cancel inverted button">
+          <i class="remove icon"></i>
+          No
+        </div>
+        <a id="modalID" href="/stories/{{$story->id}}/delete" class="ui green ok inverted button">
+          <i class="checkmark icon"></i>
+          Yes
+        </a>
+      </div>
+    </div>
 @stop
