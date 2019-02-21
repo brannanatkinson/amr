@@ -54,10 +54,10 @@
 					<div class="field">
                         <div style="width:100%; height:300px; object-fit: cover;">
                             @if ( is_null($story->story_image) )
-                                <img id="ogImage" src="{{ url ('/img/' . $story->id . '.jpg') }}" style="width: 100%; object-fit:cover" alt="">
+                                <img id="ogImage" src="{{ url ('/img/' . $story->id . '.jpg') }}" style="width: 100%; height: 100%; object-fit:cover" alt="">
                                 <input type="hidden" id="story_image" name="story_image">                              
                             @else
-                                <img id="ogImage" src="{{ $story->story_image }}" style="width: 100%; object-fit:cover" alt="">
+                                <img id="ogImage" src="{{ $story->story_image }}" style="width: 100%; height: 100%; object-fit:cover" alt="">
                                 <input type="hidden"  value="{{ $story->story_image}}" id="story_image" name="story_image">
                             @endif
 
