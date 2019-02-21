@@ -52,7 +52,7 @@
 				<div class="six wide column">
 					<div class="field">
                         <div style="width:100%; height:300px; ">
-                            <img src="" alt="" id="ogImage" sbackground-color: #eee;">
+                            <img src="" alt="" id="ogImage" style="height: 100%; width: 100%; object-fit: cover; background-color: #eee;">
                         </div>
 						<input type="hidden" id="story_image" name="story_image">
                         <input type="file" name="story_file" id="story_file" onchange="readURL(this);">

@@ -19,7 +19,7 @@
 				<div class="ui raised card">
 					    <div class="content">
 					    	<div class="right floated">
-					    		<a href="{{ $story->story_url }}" target="_blank"><i class="ui icon eye"></i></a>
+					    		<a href="{{ $story->story_url }}" target="_blank"><i class="large grey play icon"></i></a>
 					    	</div>
 					    	<div class="story__details">
 					    	    <span class="story__date story__weekday">{{ Carbon\Carbon::parse($story->story_date)->format('l,') }}</span>
@@ -55,7 +55,7 @@
 					    <div class="extra content">
 					        {{ $story->project->project_name }}
 					        @if ( Auth::user()->hasRole('siteadmin') ) 
-						        <p>{{ $story->client->client_name }}</p>
+						        <p>{{ $story->getClientName() }}</p>
 					        @endif
 					        @if ( Auth::user()->hasRole('siteadmin') ) 
 					            <a class="deleteStory right floated ui button" data-id="{{ $story->id }}">Delete</a>
