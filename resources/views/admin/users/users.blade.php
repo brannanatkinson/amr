@@ -9,6 +9,8 @@
 				<th>Name</th>
 				<th>Email</th>
 				<th>Client</th>
+				<th>User URL</th>
+
 			</tr>
 		</thead>
 		<tbody>
@@ -25,6 +27,7 @@
 	                <td>
 	                	{{App\Client::find($user->client_id)['client_name']}}
 	                </td>
+	                <td>{{$user->signed_url}}</td>
 	            </tr>
             @endforeach 
 		</tbody>

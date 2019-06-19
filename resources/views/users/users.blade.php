@@ -13,6 +13,7 @@
 				<th>Admin</th>
 				<th>Email</th>
 				<th>Client</th>
+                <th>User URL</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -34,6 +35,7 @@
 	                <td>
 	                	{{App\Client::find($user->client_id)['client_name']}}
 	                </td>
+                    <td><pre>{{$user->signed_url}}</pre></td>
 	            </tr>
             @endforeach 
 		</tbody>
@@ -41,6 +43,6 @@
     
 
     <br /><a href="/users/new" class="ui button large">Create New User</a>
-
+    
 
 @endsection

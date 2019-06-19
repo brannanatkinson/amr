@@ -18,18 +18,18 @@
 			@foreach ($stories as $story)
 				<div class="ui raised card">
 					    <div class="content">
-					    	<div class="right floated">
+					    	{{-- <div class="right floated">
 					    		<a href="{{ $story->story_url }}" target="_blank"><i class="large grey play icon"></i></a>
-					    	</div>
+					    	</div> --}}
 					    	<div class="story__details">
 					    	    <span class="story__date story__weekday">{{ Carbon\Carbon::parse($story->story_date)->format('l,') }}</span>
 							    <span class="story__date"><span class="story__day">{{ Carbon\Carbon::parse($story->story_date)->format('M d,') }}</span> </span>
 							    <span class="story__year">{{ Carbon\Carbon::parse($story->story_date)->format('Y') }}</span>
 							</div>
 							@if(strpos($story->story_url, 'twitter') == true )
-					        <h3>Twitter</h3>
+					            <h3>Twitter</h3>
 					        @else
-					        <i>{{ $story->org->org_name }}</i>
+					            <i>{{ $story->org->org_name }}</i>
 					        @endif
 					    </div>
 					    <div class="image">
@@ -47,9 +47,9 @@
 					    </div>
 					    <div class="content">
 					        @if(strpos($story->story_url, 'twitter') == true )
-					        <h3>Twitter</h3>
+					            <a href="{{ $story->story_url }}" target="_blank"><h3>View Tweet</h3></a>
 					        @else
-					        <h3>{{$story->headline()}}</h3>
+					            <a href="{{ $story->story_url }}" target="_blank"><h3>{{$story->headline()}}</h3></a>
 					        @endif
 					    </div>
 					    <div class="extra content">

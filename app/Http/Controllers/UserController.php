@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\URL;
 use DB;
 use App\User;
 use App\Client;
@@ -159,5 +160,17 @@ class UserController extends Controller
         $user->delete();
         flash('User deleted')->success();
         return redirect('/users');
+    }
+
+    // Function for creating signed URLs
+    public function admin_create_signed_url(){
+        $users = User::all();
+        foreach ( $users as $user){
+            $user_edit = DB::table('users')->where('id', $user->id)
+                ->update([
+                    'signed_url' => URL::signedRoute('signin.verify', ['id' => $user->id])
+                ]);
+        }
+        return redirect('/admin/users');
     }
 }

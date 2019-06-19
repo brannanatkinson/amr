@@ -24,9 +24,7 @@ class SigninController extends Controller
     {
         if ( User::where('email', '=', $request->email )->exists()) {
             $user = User::where('email', '=', $request->email)->first();
-            $user->login_link = 0; 
-            $user->save();
-            $url = Url::signedRoute('signin.verify', ['id' => $user->id]);
+            $url = $user->signed_url;
             Mail::to($request->email)->send(new LoginLink($user, $url));
             $confirmation_details = [];
             $confirmation_details['email'] = $request->email;
@@ -48,11 +46,9 @@ class SigninController extends Controller
         $user = User::find($id);
         Auth::login($user);
         //dd($user->login_link);
-        if ( $user->login_link == 0 ){
-            return view('signin.firstaccess');
-        } else {
-            return redirect()->route('stories.index');
-        }
+        
+        return redirect()->route('stories.index');
+        
         
     }
 

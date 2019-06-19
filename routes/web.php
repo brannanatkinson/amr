@@ -12,6 +12,7 @@
 */
 
 Route::get('/', function () {
+    Auth::logout();
     return view('welcome');
 });
 Route::get('test', 'TestController@index');
@@ -63,6 +64,7 @@ Route::patch('/clients/{client}', 'ClientController@update')->name('clients.upda
 Route::delete('/clients/{client}', 'ClientController@destroy')->name('clients.destroy')->middleware(['auth', 'role:siteadmin']);
 Route::get('/clients/{client}/edit', 'ClientController@edit')->name('clients.edit')->middleware(['auth', 'role:siteadmin']);
 
+
 Route::get('/contacts/', 'ContactController@index')->middleware(['auth', 'role:siteadmin']);
 Route::post('/contacts/', 'ContactController@store')->name('clients.store')->middleware(['auth', 'role:siteadmin']);
 Route::get('/contacts/create', 'ContactController@create')->name('clients.create')->middleware(['auth', 'role:siteadmin']);
@@ -82,6 +84,7 @@ Route::group(['prefix' => 'admin/', 'middleware' => ['role:siteadmin', 'auth']],
      Route::post('clients', 'ClientController@adminstore');
      Route::get('clients/{id}/edit', 'ClientController@adminedit');
      Route::patch('clients/{id}', 'ClientController@adminupdate');
+
 });
 
 // Clients user routes
@@ -91,6 +94,7 @@ Route::group(['prefix' => 'admin/', 'middleware' => ['role:siteadmin', 'auth']],
      Route::post('users', 'UserController@store');
      Route::get('users/{id}/edit', 'UserController@edit');
      Route::patch('users/{id}', 'UserController@update');
+     Route::get('users/signed_url', 'UserController@admin_create_signed_url');
 });
 
 // Login Link Signin

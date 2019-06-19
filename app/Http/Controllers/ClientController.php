@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\URL;
 use DB;
 use Auth;
 use App\Client;
@@ -166,9 +167,5 @@ class ClientController extends Controller
     {
         //
     }
-    // Function for creating signed URLs
-    public function admin_create_signed_url(){
-        $clients = Client::all();
-        
-    }
+    
 }

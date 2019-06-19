@@ -8,8 +8,8 @@
 			<tr>
 				<th>Client Name</th>
 				<th>Client Logo</th>
-				<th>Client Notes</th>
 				<th>Users</th>
+				
 			</tr>
 		</thead>
 		<tbody>
@@ -17,7 +17,6 @@
 			    <tr>
 	                <td>{{$client->client_name}} <a href="/clients/{{$client->id}}/edit"><i class="pencil alternate grey icon"></i></a></td>
 	                <td>{{$client->client_logo}}</td>
-	                <td>{{$client->client_desc}}</td>
 	                <td>
 	                	@php
 	                	    $users = App\User::where('client_id', '=', $client->id)->orderBy('last_name')->get();
@@ -28,13 +27,17 @@
 						@endforeach
 						</div>
 	                </td>
+	                
+	                
 	            </tr>
             @endforeach 
 		</tbody>
 	</table>
     
 
-    <br /><a href="/clients/new" class="ui button large">Create New Client</a>
+    <br /><a href="/admin/clients/new" class="ui button large">Create New Client</a>
+    <hr>
+    <br /><a href="/admin/clients/signed_url" class="ui button large">Create New URLs</a>
 
 
 @endsection

@@ -14,7 +14,14 @@
             </tr>
             <tr >
                 <td style="padding: 50px 0px;">
-                    <p style="font-family: 'Roboto';">Here is the <a href="{{$loginlink}}">login link</a> you requested for Atkinson Media Reports.</p>
+                    <h2 style="text-align: center;">Your Secure Login Link to Atkinson Media Reports</h2>
+                    <p>Your secure login link for Atkinson Media Reports is:</p>
+                    <pre><a href="{{ $user->signed_url }}">{{ $user->signed_url }}</a></pre>
+                    <br>
+                    <hr>
+                    <p>This link doesn't expire. You can just save this email to log in at any time. Or, you can copy and paste to create a bookmark in your browser.</p>
+                    <p>Recovering your link is easy. Go to atkinsonmediareports.com and follow the instructions.</a> </p>
+                    <p>Please contact Brannan Atkinson at brannan@amyacommunications.com if you have any issues.</p>
                 </td>
             </tr>
         </table>
