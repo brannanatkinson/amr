@@ -44,7 +44,7 @@ class StoryController extends Controller
             $stories = Story::where('client_id', $user->client_id)->orderBy('story_date', 'desc')->simplePaginate(15);
         }
 
-        return view('stories.index', compact('stories', 'clientName'));
+        return view('stories.index', compact('stories'));
         
     }
 

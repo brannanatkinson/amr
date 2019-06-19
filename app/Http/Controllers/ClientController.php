@@ -166,4 +166,9 @@ class ClientController extends Controller
     {
         //
     }
+    // Function for creating signed URLs
+    public function admin_create_signed_url(){
+        $clients = Client::all();
+        
+    }
 }
