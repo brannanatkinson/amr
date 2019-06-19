@@ -53,4 +53,10 @@ class Story extends Model
         $meta = Metadata::where('story_id', '=', $this->id)->where('meta_type', '=', 'headline')->first();
         return $meta['meta_value'];
     }
+    public function notes()
+    {
+        // return $this->id;
+        $meta = Metadata::where('story_id', '=', $this->id)->where('meta_type', '=', 'notes')->first();
+        return $meta['meta_value'];
+    }
 }

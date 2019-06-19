@@ -50,6 +50,9 @@
 					            <a href="{{ $story->story_url }}" target="_blank"><h3>View Tweet</h3></a>
 					        @else
 					            <a href="{{ $story->story_url }}" target="_blank"><h3>{{$story->headline()}}</h3></a>
+					            @if ( $story->notes() )
+					                <p style="padding-top: 20px;">Notes: {{ $story->notes() }}</p>
+					            @endif
 					        @endif
 					    </div>
 					    <div class="extra content">
