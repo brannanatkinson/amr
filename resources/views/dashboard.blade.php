@@ -4,14 +4,10 @@
     {{-- header --}}
     <div class="ui container">
         @if ( Auth::user()->hasRole('siteadmin') ) 
-
-                    <h1 class="ui header">Dashboard for All Clients</h1>
-
-                @else
-
-                    <h1 class="ui header">Dashboard for {{App\Client::find(Auth::user()->client_id)['client_name']}}</h1>
-
-                @endif
+            <h1 class="ui header">Dashboard for All Clients</h1>
+        @else
+            <h1 class="ui header">Dashboard for {{App\Client::find(Auth::user()->client_id)['client_name']}}</h1>
+        @endif
     </div>
 
     <!-- Most recent mentions -->

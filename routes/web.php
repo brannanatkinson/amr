@@ -20,7 +20,7 @@ Route::post('test', 'TestController@store');
 
 Auth::routes();
 
-Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+Route::get('/dashboard', 'DashboardController@index')->middleware(['auth'])->name('dashboard');
 
 Route::get('/home', 'HomeController@index');
 
