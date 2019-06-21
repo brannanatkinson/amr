@@ -97,7 +97,7 @@
             <div class="blue statistic">
                 <div class="value">
                     @if ( Auth::user()->hasRole('siteadmin') ) 
-                        {{-- App\Project::all()->count() --}}
+                        {{ App\Project::all()->count() }}
                     @else
                         {{ App\Client::find(Auth::user()->client_id)->projects->count() }}
                     @endif
@@ -107,9 +107,9 @@
             <div class="blue statistic">
                 <div class="value">
                     @if ( Auth::user()->hasRole('siteadmin') ) 
-                        {{-- App\Org::all()->count() --}}
+                        {{ App\Org::all()->count() }}
                     @else
-                        {{ App\Client::find(Auth::user()->client_id)->orgs->count() }}
+                        {{ App\Client::find(Auth::user()->client_id)->orgs()->count() }}
                     @endif
                 </div>
                 <div class="label">media outlets</div>
