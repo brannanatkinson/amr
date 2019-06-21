@@ -82,7 +82,7 @@
 
     <!-- client stats -->
     <div class="section" style="background-color: #eee; padding: 50px 0px; text-align: center;">
-        <p style="text-transform: uppercase;">Atkinson Media Reports Metrics for OZ Arts</p>
+        <p style="text-transform: uppercase;">Atkinson Media Reports Metrics</p>
         <div class="ui three statistics">
             <div class="blue statistic">
                 <div class="value">
