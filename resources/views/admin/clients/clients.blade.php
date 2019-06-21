@@ -36,8 +36,7 @@
     
 
     <br /><a href="/admin/clients/new" class="ui button large">Create New Client</a>
-    <hr>
-    <br /><a href="/admin/clients/signed_url" class="ui button large">Create New URLs</a>
+
 
 
 @endsection

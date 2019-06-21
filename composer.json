@@ -8,6 +8,7 @@
         "php": ">=5.6.4",
         "embed/embed": "^3.0",
         "fideloper/proxy": "~4.0",
+        "guzzlehttp/guzzle": "^6.3",
         "laracasts/flash": "^3.0",
         "laravel/framework": "5.6.*",
         "laravel/tinker": "~1.0",

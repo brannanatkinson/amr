@@ -47,7 +47,7 @@ class SigninController extends Controller
         Auth::login($user);
         //dd($user->login_link);
         
-        return redirect()->route('stories.index');
+        return redirect()->route('dashboard');
         
         
     }

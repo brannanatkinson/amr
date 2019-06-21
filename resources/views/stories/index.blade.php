@@ -34,7 +34,7 @@
 					    </div>
 					    <div class="image">
 					    	@if(strpos($story->story_url, 'twitter') == true )
-					    	    <img style="height: 200px; object-fit: cover;" src="https://placehold.it/600/1CA1F2/ffffff" alt="" >
+					    	    <img style="height: 200px; object-fit: cover;" src="/img/twitter_logo.png" alt="" >
 					    	@else
 						        @if ( is_null($story->story_image) )
 									<img style="height: 200px; object-fit: cover;" src="{{ url ('/img/' . $story->id . '.jpg') }}" alt="">																			
@@ -48,8 +48,8 @@
 					    <div class="content">
 					        @if(strpos($story->story_url, 'twitter') == true )
 					            <a href="{{ $story->story_url }}" target="_blank"><h3>View Tweet</h3></a>
-					        @else
-					            <a href="{{ $story->story_url }}" target="_blank"><h3>{{$story->headline()}}</h3></a>
+					        @else 
+					            <a href="{{ $story->story_url }}" target="_blank"><h3>{{ str_limit( $story->headline(), $limit = 60, $end = '...') }}</h3></a>
 					            @if ( $story->notes() )
 					                <p style="padding-top: 20px;">Notes: {{ $story->notes() }}</p>
 					            @endif

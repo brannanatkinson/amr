@@ -42,10 +42,10 @@
             	<label for="email">Email Address</label>
             	<input type="text" name="email" required>
             </div>
-            <div class="field">
+            {{-- <div class="field">
             	<label for="password">Password</label>
             	<input type="password" name="password" required>
-            </div>
+            </div> --}}
         </div>
 
         <div class="field">

@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use DB;
 
 class Client extends Model
 {
@@ -28,5 +29,20 @@ class Client extends Model
 
     public function getClientName(){
     	return $this->client_name;
+    }
+
+    
+
+    public function orgs()
+    {
+        $orgs = DB::table('orgs')
+            ->join('stories', 'orgs.id', '=', 'stories.org_id')
+            ->join('clients', 'clients.id', '=', 'stories.client_id')
+            ->select('orgs.org_name')
+            ->where('clients.id', $this->id)
+            ->get();
+        $unique = $orgs->unique()->sort();
+
+        return $unique;
     }
 }

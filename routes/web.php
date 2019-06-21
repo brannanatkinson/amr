@@ -20,6 +20,8 @@ Route::post('test', 'TestController@store');
 
 Auth::routes();
 
+Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+
 Route::get('/home', 'HomeController@index');
 
 Route::group(['prefix' => 'ajax'], function() {
@@ -41,7 +43,7 @@ Route::get('/stories/{story}/delete', 'StoryController@destroy')->name('stories.
 Route::get('/stories/{story}/edit', 'StoryController@edit')->name('stories.edit')->middleware(['auth', 'role:siteadmin']);
 
 
-Route::get('/projects/', 'ProjectController@index')->name('projects.index');
+Route::get('/projects/', 'ProjectController@index')->name('projects.index')->middleware(['auth']);
 Route::post('/projects/', 'ProjectController@store')->name('projects.store')->middleware(['auth', 'role:siteadmin']);
 Route::get('/projects/create', 'ProjectController@create')->name('projects.create')->middleware(['auth', 'role:siteadmin']);
 Route::get('/projects/{project}', 'ProjectController@show')->name('projects.show')->middleware(['auth']);
@@ -112,9 +114,10 @@ Route::get('/media', 'MediaController@index');
 
 Route::resource('reporters', 'ReporterController');
 
-Route::get('update/metadata', 'AdminController@index');
+//Route::get('update/metadata', 'AdminController@index');
 
 Route::get('admin/updateheadlines', 'UpdateController@updateHeadlines')->middleware(['auth', 'role:siteadmin']);
+// metadata table -- id, story_id, meta_type, meta_value
 
 
 
