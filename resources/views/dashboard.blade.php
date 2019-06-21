@@ -106,11 +106,7 @@
             </div>
             <div class="blue statistic">
                 <div class="value">
-                    @if ( Auth::user()->hasRole('siteadmin') ) 
-                        {{-- App\Org::->count() --}}
-                    @else
-                        {{ App\Client::find(Auth::user()->client_id)->orgs->count() }}
-                    @endif
+                    
                 </div>
                 <div class="label">media outlets</div>
             </div>
