@@ -3,20 +3,24 @@
 @section('content')
     {{-- header --}}
     <div class="ui container">
-        {{-- @if ( Auth::user()->hasRole('siteadmin') ) 
+        @if ( Auth::user()->hasRole('siteadmin') ) 
             <h1 class="ui header">Dashboard for All Clients</h1>
         @else
             <h1 class="ui header">Dashboard for {{App\Client::find(Auth::user()->client_id)['client_name']}}</h1>
-        @endif --}}
+        @endif
     </div>
 
     <!-- Most recent mentions -->
     <div class="section" style="margin-bottom: 50px;">
         <div class="ui container">
             <h2>Most Recent Mentions</h2>
-            @php
-                $stories = App\Client::find(Auth::user()->client_id)->stories->sortByDesc('created_at')->take(6);
-            @endphp
+
+            @if ( Auth::user()->hasRole('siteadmin') ) 
+                    @php $stories = App\Story::get()->sortByDesc('created_at')->take(6) @endphp
+            @else
+                    @php $stories = App\Client::find(Auth::user()->client_id)->stories->sortByDesc('created_at')->take(6) @endphp
+            @endif
+            
             <div class="ui three stackable cards">   
                 @foreach ( $stories as $story )  
                     <div class="ui raised card">
@@ -81,15 +85,27 @@
         <p style="text-transform: uppercase;">Atkinson Media Reports Metrics for OZ Arts</p>
         <div class="ui three statistics">
             <div class="blue statistic">
-                <div class="value">{{ App\Client::find(Auth::user()->client_id)->stories->count() }}</div>
+                <div class="value">
+                    @if ( Auth::user()->hasRole('siteadmin') ) 
+                        {{ App\Story::all()->count() }}
+                    @else
+                        {{ App\Client::find(Auth::user()->client_id)->stories->count() }}
+                    @endif
+                </div>
                 <div class="label">total mentions</div>
             </div>
             <div class="blue statistic">
-                <div class="value">{{ App\Client::find(Auth::user()->client_id)->projects->count() }}</div>
+                <div class="value">
+                    @if ( Auth::user()->hasRole('siteadmin') ) 
+                        {{ App\Project::all()->count() }}
+                    @else
+                        {{ App\Client::find(Auth::user()->client_id)->stories->count() }}
+                    @endif
+                </div>
                 <div class="label">projects</div>
             </div>
             <div class="blue statistic">
-                <div class="value">{{ App\Client::find(Auth::user()->client_id)->orgs()->count() }}</div>
+                <div class="value">{{-- App\Client::find(Auth::user()->client_id)->orgs()->count() --}}</div>
                 <div class="label">media outlets</div>
             </div>
         </div>
@@ -103,9 +119,14 @@
               <div class="sub header">Click a project to see mentions</div>
             </h2>
 
-            @php
-                $projects = App\Client::find(Auth::user()->client_id)->projects->sortByDesc('created_at')->take(5);
-            @endphp
+            
+                    @if ( Auth::user()->hasRole('siteadmin') ) 
+                        @php $projects = App\Project::all()->sortByDesc('created_at')->take(5) @endphp
+                    @else
+                        @php $projects = App\Client::find(Auth::user()->client_id)->projects->sortByDesc('created_at')->take(5) @endphp
+                    @endif
+                
+            
             
             <ul style="font-size: 1.5em; line-height: 1.5;">
                 @foreach ( $projects as $project )
