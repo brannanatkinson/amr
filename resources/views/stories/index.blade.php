@@ -25,7 +25,7 @@
 			@endif
 		<h1 class="ui header">
 			Mentions
-		   <div class="sub header">{{ $story->count() }} Mentions</div>
+		   <div class="sub header">{{ $stories->count() }} Mentions</div>
 		</h1>	
 		<div class="ui three stackable cards">
 			@foreach ($stories as $story)
