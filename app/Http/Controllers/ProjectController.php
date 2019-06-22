@@ -68,7 +68,7 @@ class ProjectController extends Controller
     public function show($id)
     {
         //
-        if ( Auth:;user() ){
+        if ( Auth::user() ){
           $user = Auth::user();
         }
         if ( $user->hasRole('siteadmin') ){
