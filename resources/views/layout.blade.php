@@ -43,6 +43,7 @@
 <body>
 
         <div class="ui sidebar inverted vertical menu">
+            <a href='/stories' class="item">Dashboard</a>
             <a href='/stories' class="item">Mentions</a>
             <a href='/projects' class="item">Projects</a>
             <a href='/media' class="item">Media</a>
