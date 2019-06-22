@@ -34,7 +34,7 @@ Route::group(['prefix' => 'ajax'], function() {
 });
 
 
-Route::get('/stories', 'StoryController@index')->middleware(['auth'])->name('stories.index');
+Route::get('/stories', 'StoryController@index')->name('stories.index');
 Route::post('/stories', 'StoryController@store')->name('stories.store')->middleware(['auth', 'role:siteadmin']);
 Route::get('/stories/create', 'StoryController@create')->name('stories.create')->middleware(['auth', 'role:siteadmin']);
 Route::get('/stories/{story}', 'StoryController@show')->name('stories.show')->middleware(['auth', 'role:siteadmin']);
