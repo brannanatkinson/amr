@@ -6,6 +6,7 @@
 			    <h1 class="ui header">
 					{{ $project->project_name }}
 				   <div class="sub header">{{ $project->client->client_name }}</div>
+
 				</h1>
 				
 				<div class="ui segment">
@@ -13,6 +14,10 @@
 			    <pre>http://www.atkinsonmediareports.com/projects/{{ $project->id }}/share</pre>
 			    </div>
 			    <hr>
+			    <h1 class="ui header">
+					Mentions
+				   <div class="sub header">{{ $stories->count() }} Mentions</div>
+				</h1>	
 			@else 
 				@if ( Auth::user()->hasRole('siteadmin') && \Request::is('clients/*') ) 
 				    @php
@@ -23,10 +28,7 @@
 				
 				@endif
 			@endif
-		<h1 class="ui header">
-			Mentions
-		   <div class="sub header">{{ $stories->count() }} Mentions</div>
-		</h1>	
+		
 		<div class="ui three stackable cards">
 			@foreach ($stories as $story)
 				<div class="ui raised card">
