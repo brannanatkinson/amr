@@ -7,8 +7,11 @@
 					Mentions for {{ $project->project_name }}
 				   <div class="sub header">{{ $project->client->client_name }}</div>
 				</h1>
-				<p>Public URL for sharing. Recipients can see without loggin in.</p>
+				<p>Public URL for sharing. Copy and paste to share </p>
+				<div class="ui segment">
 			    <pre>http://www.atkinsonmediareports.com/{{ $project->project_name }}/share</pre>
+			    </div>
+			    <hr>
 			@else 
 				@if ( Auth::user()->hasRole('siteadmin') && \Request::is('clients/*') ) 
 				    @php
