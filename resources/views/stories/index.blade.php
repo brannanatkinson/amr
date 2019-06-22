@@ -3,8 +3,12 @@
 @section('content')
 	<div class="ui container">
 		    @if (\Request::is('projects/*'))
-			    <h1>Mentions for {{ $project->project_name }}</h1>
-			    <a href="/projects/{{ $project->id }}/share" class="ui button" style="margin-bottom: 20px;">Share This Project</a>
+			    <h1 class="ui header">
+					Mentions for {{ $project->project_name }}
+				   <div class="sub header">{{ $project->client->client_name }}</div>
+				</h1>
+				<p>Public URL for sharing. Recipients can see without loggin in.</p>
+			    <pre>http://www.atkinsonmediareports.com/{{ $project->project_name }}/share</pre>
 			@else 
 				@if ( Auth::user()->hasRole('siteadmin') && \Request::is('clients/*') ) 
 				    @php
