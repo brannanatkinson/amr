@@ -10,7 +10,7 @@
 				
 				<div class="ui segment">
 				<p>Public URL for sharing. Copy and paste to share this project.</p>
-			    <pre>http://www.atkinsonmediareports.com/{{ $project->project_name }}/share</pre>
+			    <pre>http://www.atkinsonmediareports.com/{{ $project->id }}/share</pre>
 			    </div>
 			    <hr>
 			@else 
