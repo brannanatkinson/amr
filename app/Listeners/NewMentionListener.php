@@ -30,6 +30,6 @@ class NewMentionListener
      */
     public function handle(NewMention $event)
     {
-        Mail::to( Auth::user()->email )->send(new NewMentionMail( $event->story ));
+        //Mail::to( Auth::user()->email )->send(new NewMentionMail( $event->story ));
     }
 }
