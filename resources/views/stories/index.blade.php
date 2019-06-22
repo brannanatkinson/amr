@@ -4,7 +4,7 @@
 	<div class="ui container">
 		    @if (\Request::is('projects/*'))
 			    <h1 class="ui header">
-					Mentions for {{ $project->project_name }}
+					{{ $project->project_name }}
 				   <div class="sub header">{{ $project->client->client_name }}</div>
 				</h1>
 				
@@ -23,6 +23,10 @@
 				
 				@endif
 			@endif
+		<h1 class="ui header">
+			Mentions
+		   <div class="sub header">{{ $story->count() }} Mentions</div>
+		</h1>	
 		<div class="ui three stackable cards">
 			@foreach ($stories as $story)
 				<div class="ui raised card">
