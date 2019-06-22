@@ -41,16 +41,20 @@
 
 </head>
 <body>
-
+        
         <div class="ui sidebar inverted vertical menu">
-            <a href='/stories' class="item">Dashboard</a>
-            <a href='/stories' class="item">Mentions</a>
-            <a href='/projects' class="item">Projects</a>
-            <a href='/media' class="item">Media</a>
-            @if ( Auth::user() )
-                @if ( Auth::user()->hasRole('siteadmin') )
-                   <a href="/clients" class="item">Clients</a>
+            @if ( Auth::check() )
+                <a href='/stories' class="item">Dashboard</a>
+                <a href='/stories' class="item">Mentions</a>
+                <a href='/projects' class="item">Projects</a>
+                <a href='/media' class="item">Media</a>
+                @if ( Auth::user() )
+                    @if ( Auth::user()->hasRole('siteadmin') )
+                       <a href="/clients" class="item">Clients</a>
+                    @endif
                 @endif
+            @else
+                <a href='/signin' class="item">Signin</a>
             @endif
         </div>
         <div class="pusher">
@@ -69,6 +73,7 @@
                             <div class="right floated six wide computer only column">
                                 <div class="ui right text menu">
                                     @if ( Auth::check() )
+                                            <div class="ui right item"><a href='/dashboard'>Dashboard</a></div>
                                             <div class="ui right item"><a href='/stories'>Mentions</a></div>
                                             <div class="ui right item"><a href="/projects">Projects</a></div>
                                             <div class="ui right item"><a href="/media">Media</a></div>
