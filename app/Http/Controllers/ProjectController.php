@@ -68,11 +68,10 @@ class ProjectController extends Controller
     public function show($id)
     {
         //
-        // if ( Auth::user() ){
-        //   $user = Auth::user();
-        // }
-
-        if ( Auth::user() && $user->hasRole('siteadmin') ){
+        if ( Auth:;user() ){
+          $user = Auth::user();
+        }
+        if ( $user->hasRole('siteadmin') ){
 
             $project = Project::find($id);
             $stories = Story::where('project_id', '=', $id)->orderBy('story_date', 'desc')->simplePaginate(15);
@@ -85,13 +84,13 @@ class ProjectController extends Controller
             //dd(Auth::user()->client_id);
             $project = Project::find($id);
             $stories = Story::where('project_id', '=', $id)->orderBy('story_date', 'desc')->paginate(15);
-            return view('stories.index', compact('stories', 'project'));
-            // if ( $project->client_id == Auth::user()->client_id ){
-                
-            //     //return view('projects.show', compact('project'));
-            // } else {
-            //     return redirect('/projects');
-            // }
+
+            if ( $project->client_id == Auth::user()->client_id ){
+                return view('stories.index', compact('stories', 'project'));
+                //return view('projects.show', compact('project'));
+            } else {
+                return redirect('/projects');
+            }
 
         }
     }
