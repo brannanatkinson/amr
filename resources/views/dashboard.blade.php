@@ -124,16 +124,11 @@
               Most Recent Projects
               <div class="sub header">Click a project to see mentions</div>
             </h2>
-
-            
                     @if ( Auth::user()->hasRole('siteadmin') ) 
                         @php $projects = App\Project::all()->sortByDesc('created_at')->take(5) @endphp
                     @else
                         @php $projects = App\Client::find(Auth::user()->client_id)->projects->sortByDesc('created_at')->take(5) @endphp
                     @endif
-                
-            
-            
             <ul style="font-size: 1.5em; line-height: 1.5;">
                 @foreach ( $projects as $project )
                     <li><a href="/projects/{{ $project->id }}">{{ $project->project_name }}</a></li>
