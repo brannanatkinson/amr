@@ -4,6 +4,7 @@
 	<div class="ui container">
 		    @if (\Request::is('projects/*'))
 			    <h1>Mentions for {{ $project->project_name }}</h1>
+			    <a href="/projects/{{ $project->id }}/share" class="ui button" style="margin-bottom: 20px;">Share This Project</a>
 			@else 
 				@if ( Auth::user()->hasRole('siteadmin') && \Request::is('clients/*') ) 
 				    @php
