@@ -7,8 +7,9 @@
 					Mentions for {{ $project->project_name }}
 				   <div class="sub header">{{ $project->client->client_name }}</div>
 				</h1>
-				<p>Public URL for sharing. Copy and paste to share </p>
+				
 				<div class="ui segment">
+				<p>Public URL for sharing. Copy and paste to share this project.</p>
 			    <pre>http://www.atkinsonmediareports.com/{{ $project->project_name }}/share</pre>
 			    </div>
 			    <hr>
