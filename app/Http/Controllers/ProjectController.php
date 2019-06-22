@@ -68,9 +68,11 @@ class ProjectController extends Controller
     public function show($id)
     {
         //
-        $user = Auth::user();
-
-        if ( $user->hasRole('siteadmin') ){
+        if ( Auth:;user() ){
+          $user = Auth::user();
+        }
+        
+        if ( Auth::user() && $user->hasRole('siteadmin') ){
 
             $project = Project::find($id);
             $stories = Story::where('project_id', '=', $id)->orderBy('story_date', 'desc')->simplePaginate(15);
