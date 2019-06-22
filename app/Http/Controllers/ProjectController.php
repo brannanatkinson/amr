@@ -67,36 +67,33 @@ class ProjectController extends Controller
      */
     public function show($id)
     {
-        $project = Project::find($id);
-        $stories = Story::where('project_id', '=', $id)->orderBy('story_date', 'desc')->simplePaginate(15);
-        //return view('projects.show', compact('project'));
-        return view('stories.index', compact('stories', 'project'));
         
-        // if ( Auth::user() ){
-        //   $user = Auth::user();
-        // }
-        // if ( $user->hasRole('siteadmin') ){
+        
+        if ( Auth::user() ){
+          $user = Auth::user();
+        }
+        if ( $user->hasRole('siteadmin') ){
 
-        //     $project = Project::find($id);
-        //     $stories = Story::where('project_id', '=', $id)->orderBy('story_date', 'desc')->simplePaginate(15);
-        //     //return view('projects.show', compact('project'));
-        //     return view('stories.index', compact('stories', 'project'));
+            $project = Project::find($id);
+            $stories = Story::where('project_id', '=', $id)->orderBy('story_date', 'desc')->simplePaginate(15);
+            //return view('projects.show', compact('project'));
+            return view('stories.index', compact('stories', 'project'));
 
-        // } else {
+        } else {
 
-        //     //$clientID = DB::table('clients_users')->select('client_id')->where('user_id', '=', $user->id)->first();
-        //     //dd(Auth::user()->client_id);
-        //     $project = Project::find($id);
-        //     $stories = Story::where('project_id', '=', $id)->orderBy('story_date', 'desc')->paginate(15);
+            //$clientID = DB::table('clients_users')->select('client_id')->where('user_id', '=', $user->id)->first();
+            //dd(Auth::user()->client_id);
+            $project = Project::find($id);
+            $stories = Story::where('project_id', '=', $id)->orderBy('story_date', 'desc')->paginate(15);
 
-        //     if ( $project->client_id == Auth::user()->client_id ){
-        //         return view('stories.index', compact('stories', 'project'));
-        //         //return view('projects.show', compact('project'));
-        //     } else {
-        //         return redirect('/projects');
-        //     }
+            if ( $project->client_id == Auth::user()->client_id ){
+                return view('stories.index', compact('stories', 'project'));
+                //return view('projects.show', compact('project'));
+            } else {
+                return redirect('/projects');
+            }
 
-        // }
+        }
     }
 
     /**

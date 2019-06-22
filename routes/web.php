@@ -34,7 +34,7 @@ Route::group(['prefix' => 'ajax'], function() {
 });
 
 
-Route::get('/stories', 'StoryController@index')->name('stories.index');
+Route::get('/stories', 'StoryController@index')->middleware(['auth'])->name('stories.index');
 Route::post('/stories', 'StoryController@store')->name('stories.store')->middleware(['auth', 'role:siteadmin']);
 Route::get('/stories/create', 'StoryController@create')->name('stories.create')->middleware(['auth', 'role:siteadmin']);
 Route::get('/stories/{story}', 'StoryController@show')->name('stories.show')->middleware(['auth', 'role:siteadmin']);
@@ -46,7 +46,7 @@ Route::get('/stories/{story}/edit', 'StoryController@edit')->name('stories.edit'
 Route::get('/projects/', 'ProjectController@index')->name('projects.index')->middleware(['auth']);
 Route::post('/projects/', 'ProjectController@store')->name('projects.store')->middleware(['auth', 'role:siteadmin']);
 Route::get('/projects/create', 'ProjectController@create')->name('projects.create')->middleware(['auth', 'role:siteadmin']);
-Route::get('/projects/{project}', 'ProjectController@show')->name('projects.show');
+Route::get('/projects/{project}', 'ProjectController@show')->name('projects.show')->middleware(['auth']);
 Route::patch('/projects/{project}', 'ProjectController@update')->name('projects.update')->middleware(['auth', 'role:siteadmin']);
 Route::delete('/projects/{project}', 'ProjectController@destroy')->name('projects.destroy')->middleware(['auth', 'role:siteadmin']);
 Route::get('/projects/{project}/edit', 'ProjectController@edit')->name('projects.edit')->middleware(['auth', 'role:siteadmin']);
