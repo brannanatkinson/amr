@@ -65,6 +65,7 @@ class AjaxController extends Controller
 
     public function get_projects(Request $request)
     {
+        var_dump($request);
         $projects = Project::where('client_id', '=', $request->client_id)->orderBy('project_name', 'asc')->get();
         return Response::json($projects);  	
     }
