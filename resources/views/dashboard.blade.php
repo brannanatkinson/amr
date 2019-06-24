@@ -131,7 +131,7 @@
                     @endif
             <ul style="font-size: 1.5em; line-height: 1.5;">
                 @foreach ( $projects as $project )
-                    <li><a href="/projects/{{ $project->id }}">{{ $project->project_name }}</a></li>
+                    <li><a href="/projects/{{ $project->project_share_id }}">{{ $project->project_name }}</a></li>
                 @endforeach
             </ul>
             <div class="ui right aligned header"><a href='/projects'>All projects >></a></div>

@@ -95,19 +95,5 @@
 		
 
 	</div>
-<div class="ui basic modal">
-      <div class="ui icon header">
-          Are you sure you want to delete this story?
-      </div>
-      <div class="actions">
-        <div class="ui red basic cancel inverted button">
-          <i class="remove icon"></i>
-          No
-        </div>
-        <a id="modalID" href="/stories/{{$story->id}}/delete" class="ui green ok inverted button">
-          <i class="checkmark icon"></i>
-          Yes
-        </a>
-      </div>
-    </div>
+
 @stop

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Str;
 use Auth;
 use DB;
 use App\User;
@@ -80,10 +81,12 @@ class AjaxController extends Controller
 
         $new_project->client_id = $request->client_id;
         $new_project->project_name = $request->project_name;
+        $new_project->project_share_id => $new_project->Str::random(16);
         $new_project->save();
         return response()->json([
                 'project_id' => $new_project->id,
                 'project_name' => $new_project->project_name
+
             ], 200);	
     }
     /**

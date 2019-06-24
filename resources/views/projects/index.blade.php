@@ -26,7 +26,7 @@
 						<ul>
 							@foreach($client->projects as $project)
 							    <tr>
-							    	<li><a href="/projects/{{$project->id}}/">{{$project->project_name}}</a> <span class="ui grey circular label">{{$project->stories->count()}}</span></li>
+							    	<li><a href="/projects/{{$project->project_share_id}}/">{{$project->project_name}}</a> <span class="ui grey circular label">{{$project->stories->count()}}</span></li>
 							    </tr>
 							@endforeach
 						</ul>
@@ -38,7 +38,7 @@
 
 				@foreach($projects as $project)
 
-					<li><a href="/projects/{{$project->id}}/">{{$project->project_name}}</a> <span class="ui grey circular label">{{$project->stories->count()}}</span></li>
+					<li><a href="/projects/{{$project->project_share_id}}/">{{$project->project_name}}</a> <span class="ui grey circular label">{{$project->stories->count()}}</span></li>
 
 				@endforeach
 
