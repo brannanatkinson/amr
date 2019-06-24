@@ -10,9 +10,11 @@
 				</h1>
 				
 				<div class="ui segment">
+				@if ( !(\Request::is('*/share')) )
 				<p>Public URL for sharing. Copy and paste to share this project.</p>
 			    <pre>http://www.atkinsonmediareports.com/projects/{{ $project->project_share_id }}/share</pre>
 			    </div>
+			    @endif
 			    <hr>
 			    <h1 class="ui header">
 					Mentions
