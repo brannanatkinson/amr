@@ -11,7 +11,7 @@
 				
 				<div class="ui segment">
 				<p>Public URL for sharing. Copy and paste to share this project.</p>
-			    <pre>http://www.atkinsonmediareports.com/projects/{{ $project->id }}/share</pre>
+			    <pre>http://www.atkinsonmediareports.com/projects/{{ $project->project_share_id }}/share</pre>
 			    </div>
 			    <hr>
 			    <h1 class="ui header">

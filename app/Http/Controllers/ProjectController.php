@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use DB;
 use Auth;
 use App\Client;
@@ -128,5 +129,20 @@ class ProjectController extends Controller
     public function destroy($id)
     {
         //
+    }
+    /**
+     * Make project_share_id with random digits
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function make_project_share_ids(){
+        $projects = Project::all();
+        foreach ( $projects as $project ){
+            $project_edit = DB::table('projects')->where('id', $project->id)
+                ->update([
+                    'project_share_id' => Str::random(16);
+                ]);
+        }
     }
 }
