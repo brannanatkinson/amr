@@ -65,7 +65,6 @@ class AjaxController extends Controller
 
     public function get_projects(Request $request)
     {
-        var_dump($request);
         $projects = Project::where('client_id', '=', $request->client_id)->orderBy('project_name', 'asc')->get();
         return Response::json($projects);  	
     }
@@ -82,7 +81,7 @@ class AjaxController extends Controller
 
         $new_project->client_id = $request->client_id;
         $new_project->project_name = $request->project_name;
-        $new_project->project_share_id => $new_project->Str::random(16);
+        $new_project->project_share_id = $new_project->Str::random(16);
         $new_project->save();
         return response()->json([
                 'project_id' => $new_project->id,
