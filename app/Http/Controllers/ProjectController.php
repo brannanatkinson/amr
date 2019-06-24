@@ -141,7 +141,7 @@ class ProjectController extends Controller
         foreach ( $projects as $project ){
             $project_edit = DB::table('projects')->where('id', $project->id)
                 ->update([
-                    'project_share_id' => Str::random(16);
+                    'project_share_id' => Str::random(16)
                 ]);
         }
     }
