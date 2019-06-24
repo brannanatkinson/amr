@@ -8,12 +8,12 @@
 				   <div class="sub header">{{ $project->client->client_name }}</div>
 
 				</h1>
-				
-				<div class="ui segment">
 				@if ( !(\Request::is('*/share')) )
-				<p>Public URL for sharing. Copy and paste to share this project.</p>
-			    <pre>http://www.atkinsonmediareports.com/projects/{{ $project->project_share_id }}/share</pre>
-			    </div>
+					<div class="ui segment">
+					
+					<p>Public URL for sharing. Copy and paste to share this project.</p>
+				    <pre>http://www.atkinsonmediareports.com/projects/{{ $project->project_share_id }}/share</pre>
+				    </div>
 			    @endif
 			    <hr>
 			    <h1 class="ui header">
