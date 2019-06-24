@@ -144,5 +144,6 @@ class ProjectController extends Controller
                     'project_share_id' => Str::random(16)
                 ]);
         }
+         return redirect('/projects');
     }
 }

@@ -51,7 +51,7 @@ Route::patch('/projects/{project}', 'ProjectController@update')->name('projects.
 Route::delete('/projects/{project}', 'ProjectController@destroy')->name('projects.destroy')->middleware(['auth', 'role:siteadmin']);
 Route::get('/projects/{project}/edit', 'ProjectController@edit')->name('projects.edit')->middleware(['auth', 'role:siteadmin']);
 Route::get('/projects/{project}/share', 'ShareController@share_project_url')->name('projects.share');
-Route::get('/projects/make_share_ids', 'ProjectController@make_project_share_ids')->middleware(['auth', 'role:siteadmin']);
+Route::get('admin/projects/make_share_ids', 'ProjectController@make_project_share_ids')->middleware(['auth', 'role:siteadmin']);
 
 
 Route::get('/users', 'UserController@index')->middleware(['auth', 'role:siteadmin'])->name('user.index');
