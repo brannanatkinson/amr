@@ -43,11 +43,12 @@
 							    <span class="story__date"><span class="story__day">{{ Carbon\Carbon::parse($story->story_date)->format('M d,') }}</span> </span>
 							    <span class="story__year">{{ Carbon\Carbon::parse($story->story_date)->format('Y') }}</span>
 							</div>
-							@if(strpos($story->story_url, 'twitter') == true )
+							 <i>{{ $story->org->org_name }}</i>
+							{{-- @if(strpos($story->story_url, 'twitter') == true )
 					            <h3>Twitter</h3>
 					        @else
 					            <i>{{ $story->org->org_name }}</i>
-					        @endif
+					        @endif --}}
 					    </div>
 					    <div class="image">
 					    	@if(strpos($story->story_url, 'twitter') == true )
