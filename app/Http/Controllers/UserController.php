@@ -61,7 +61,7 @@ class UserController extends Controller
                 'email'      => $request->email,
                 'password'   => $request->password,
                 'client_id'  => $request->client_id,
-                'signed_url' => URL::signedRoute('signin.verify', ['id' => $user->id])
+                'signed_url' => URL::signedRoute('signin.verify', ['id' => $user->id]),
                 'admin'      => $request->admin,
                 'filepath'   => $path
             ]);
