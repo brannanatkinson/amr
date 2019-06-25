@@ -59,9 +59,7 @@ class UserController extends Controller
                 'first_name' => $request->first_name,
                 'last_name'  => $request->last_name,
                 'email'      => $request->email,
-                'password'   => $request->password,
                 'client_id'  => $request->client_id,
-                'signed_url' => URL::signedRoute('signin.verify', ['id' => $user->id]),
                 'admin'      => $request->admin,
                 'filepath'   => $path
             ]);
@@ -70,12 +68,13 @@ class UserController extends Controller
                 'first_name' => $request->first_name,
                 'last_name'  => $request->last_name,
                 'email'      => $request->email,
-                'password'   => $request->password,
                 'client_id'  => $request->client_id,
                 'admin'      => $request->admin,
-                'signed_url' => URL::signedRoute('signin.verify', ['id' => $user->id])
+                
             ]);
         }
+        $user->signed_url = URL::signedRoute('signin.verify', ['id' => $user->id]);
+        $user->save();
         
         flash('New user created')->success();
         return redirect('/users');
