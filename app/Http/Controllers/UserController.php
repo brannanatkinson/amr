@@ -50,7 +50,7 @@ class UserController extends Controller
             'first_name' => 'required',
             'last_name'  => 'required',
             'email'      => 'required',
-            'password'   => 'required'
+            //'password'   => 'required'
         ]);
         if ($request->upload){
             $upload_name = $request->upload;
