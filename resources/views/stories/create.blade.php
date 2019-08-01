@@ -183,7 +183,7 @@
         		  		<label for="">Project Name</label>
         			    <input type="text" name="project_name">
         		  	</div>
-        		  	<button id="btn-save-media" type="submit" class='ui button'>Save New Media</button>
+        		  	<button id="btn-save-project" type="submit" class='ui button'>Save New Projects</button>
     		    </form>
     		</div>
 
