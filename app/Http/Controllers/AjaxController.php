@@ -81,7 +81,7 @@ class AjaxController extends Controller
 
         $new_project->client_id = $request->client_id;
         $new_project->project_name = $request->project_name;
-        $new_project->project_share_id = $new_project->Str::random(16);
+        $new_project->project_share_id = Str::random(16);
         $new_project->save();
         return response()->json([
                 'project_id' => $new_project->id,
