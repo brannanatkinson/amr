@@ -18,7 +18,7 @@
 			    <hr>
 			    <h1 class="ui header">
 					Mentions
-				   <div class="sub header">{{ $stories->count() }} Mentions</div>
+				   <div class="sub header">{{ $project->stories->count() }} Mentions</div>
 				</h1>	
 			@else 
 				@if ( Auth::user()->hasRole('siteadmin') && \Request::is('clients/*') ) 
