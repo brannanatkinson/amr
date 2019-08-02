@@ -5,6 +5,7 @@
 		<h1 class="ui header">
 			Mentions for {{ $project->project_name }}
 		   <div class="sub header">{{ $project->client->client_name }}</div>
+		   <div class="sub header">{{ $project->stories->count() }} Mentions</div>
 		</h1>
 		<div class="ui three stackable cards">
 			@foreach ($stories as $story)
