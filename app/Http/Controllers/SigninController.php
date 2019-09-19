@@ -19,6 +19,14 @@ class SigninController extends Controller
     	return view('/signin.index');
     }
 
+    /*
+        Switch verification to just client
+        Changed signed URLs to one for each client
+        Get URL for client 
+        Send email with client URL
+        Rewrite email
+    */
+
     // Get user submission 
     public function confirm(Request $request)
     {
