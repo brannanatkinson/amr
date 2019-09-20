@@ -16,9 +16,9 @@
             <h2>Most Recent Mentions</h2>
 
             @if ( Auth::user()->hasRole('siteadmin') ) 
-                    @php $stories = App\Story::get()->sortByDesc('created_at')->take(6) @endphp
+                    @php $stories = App\Story::get()->sortByDesc('story_date')->take(6) @endphp
             @else
-                    @php $stories = App\Client::find(Auth::user()->client_id)->stories->sortByDesc('created_at')->take(6) @endphp
+                    @php $stories = App\Client::find(Auth::user()->client_id)->stories->sortByDesc('story_date')->take(6) @endphp
             @endif
             
             <div class="ui three stackable cards">   
