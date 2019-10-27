@@ -63,7 +63,7 @@
                     <div class="ui grid">
                         <div class="row">
                             <div class="four wide column">
-                                <img class="ui medium image" src="http://res.cloudinary.com/brannanatkinson/image/upload/v1529866795/AAC/aacom_noservices_white.png" alt="">
+                                <img class="ui medium image" src="https://res.cloudinary.com/brannanatkinson/image/upload/v1529866795/AAC/aacom_noservices_white.png" alt="">
                             </div>
                             <div class="tablet mobile only twelve wide column">
                                 <div class="ui text menu">
