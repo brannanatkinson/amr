@@ -41,7 +41,7 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       //
     }
 
     /**
@@ -120,7 +120,7 @@ class ClientController extends Controller
     public function adminstore(Request $request)
     {
         $client = Client::firstOrCreate(['client_name' => $request->client_name]);
-        return redirect()->route('admin_clients_main');
+        return redirect('/admin/clients');
     }
 
     /**

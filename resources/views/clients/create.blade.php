@@ -13,10 +13,10 @@
             </ul>
         </div>
     @endif
-    <form action="/clients" method="POST" class="ui form">
+    <form action="/admin/clients" method="POST" class="ui form">
     	{{ csrf_field() }}
         <div class="field">
-            <label for="client_name">Client Name</label>
+            <label for="client_name">A Client Name</label>
             <input type="text" name="client_name" required>
         </div>
         <div class="field">
