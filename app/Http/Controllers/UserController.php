@@ -165,8 +165,9 @@ class UserController extends Controller
 
     // Function for creating signed URLs
     public function admin_create_signed_url(){
-        $users = User::all();
-        var_dump($users);
+        echo 'brannan'
+        // $users = User::all();
+        // var_dump($users);
         // foreach ( $users as $user){
         //     $user_edit = DB::table('users')->where('id', $user->id)
         //         ->update([
