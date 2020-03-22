@@ -20,7 +20,8 @@ class UserController extends Controller
     public function index()
     {
         $users = User::orderBy('last_name', 'asc')->get();
-        return view('users/users', compact('users'));
+        var_dump($users);
+        //return view('users/users', compact('users'));
     }
 
     /**
