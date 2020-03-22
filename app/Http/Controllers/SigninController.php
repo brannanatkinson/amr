@@ -48,7 +48,6 @@ class SigninController extends Controller
     // Auth user
     public function verify($id, Request $request)
     {
-        var_dump( $request->hasValidSignature() );
         if (! $request->hasValidSignature()) {
             abort(404);
         }
