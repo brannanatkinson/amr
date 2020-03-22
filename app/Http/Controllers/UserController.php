@@ -166,12 +166,13 @@ class UserController extends Controller
     // Function for creating signed URLs
     public function admin_create_signed_url(){
         $users = User::all();
-        foreach ( $users as $user){
-            $user_edit = DB::table('users')->where('id', $user->id)
-                ->update([
-                    'signed_url' => URL::signedRoute('signin.verify', ['id' => $user->id])
-                ]);
-        }
-        return redirect('/admin/users');
+        var_dump($users);
+        // foreach ( $users as $user){
+        //     $user_edit = DB::table('users')->where('id', $user->id)
+        //         ->update([
+        //             'signed_url' => URL::signedRoute('signin.verify', ['id' => $user->id])
+        //         ]);
+        // }
+        // return redirect('/admin/users');
     }
 }
