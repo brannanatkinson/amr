@@ -169,12 +169,12 @@ class UserController extends Controller
         
         $users = User::all();
         var_dump($users);
-        // foreach ( $users as $user){
-        //     $user_edit = DB::table('users')->where('id', $user->id)
-        //         ->update([
-        //             'signed_url' => URL::signedRoute('signin.verify', ['id' => $user->id])
-        //         ]);
-        // }
-        // return redirect('/admin/users');
+        foreach ( $users as $user){
+            $user_edit = DB::table('users')->where('id', $user->id)
+                ->update([
+                    'signed_url' => URL::signedRoute('signin.verify', ['id' => $user->id])
+                ]);
+        }
+        return redirect('/admin/users');
     }
 }
