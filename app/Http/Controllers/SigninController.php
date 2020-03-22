@@ -48,14 +48,15 @@ class SigninController extends Controller
     // Auth user
     public function verify($id, Request $request)
     {
-        if (! $request->hasValidSignature()) {
-            abort(404);
-        }
-        $user = User::find($id);
-        Auth::login($user);
+        var_dump( $request->hasValidSignature() );
+        // if (! $request->hasValidSignature()) {
+        //     abort(404);
+        // }
+        // $user = User::find($id);
+        // Auth::login($user);
         //dd($user->login_link);
         
-        return redirect()->route('dashboard');
+        //return redirect()->route('dashboard');
         
         
     }
