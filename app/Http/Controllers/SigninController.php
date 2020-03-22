@@ -53,7 +53,7 @@ class SigninController extends Controller
         }
         $user = User::find($id);
         Auth::login($user);
-        dd($user->login_link);
+        // dd($user->login_link);
         
         return redirect()->route('dashboard');
         
