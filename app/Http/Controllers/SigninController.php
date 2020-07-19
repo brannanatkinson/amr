@@ -48,6 +48,7 @@ class SigninController extends Controller
     public function verify($id, Request $request)
     {
         if (! $request->hasValidSignature()) {
+            dd('nope');
             abort(404);
         }
         $user = User::find($id);
