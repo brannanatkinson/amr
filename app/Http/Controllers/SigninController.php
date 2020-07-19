@@ -61,7 +61,7 @@ class SigninController extends Controller
         $users = User::all();
         //dd($users);
         $users->map( function ($user){
-            dump($user);
+            dump($user->first_name);
         });
     }
     
