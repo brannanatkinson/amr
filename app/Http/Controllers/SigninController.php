@@ -51,8 +51,8 @@ class SigninController extends Controller
             dd('nope');
             abort(404);
         }
-        dd($user);
         $user = User::find($id);
+        dd($user);
         Auth::login($user);      
         return redirect()->route('dashboard');
     }
