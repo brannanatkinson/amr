@@ -54,8 +54,16 @@ class SigninController extends Controller
         $user = User::find($id);
         Auth::login($user);      
         return redirect()->route('dashboard');
-        
-        
     }
+
+    // Auth user
+    public function update(){
+        $users = User::alll();
+        $users->each(function ($user){
+            $user->Signed_url = signedURL::signedRoute(['user' => $user->id]);
+            $user->save();
+        });
+    }
+    
 
 }

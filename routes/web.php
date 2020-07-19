@@ -104,6 +104,7 @@ Route::group(['prefix' => 'admin/', 'middleware' => ['role:siteadmin', 'auth']],
 
 // Login Link Signin
 Route::get('/signin', 'SigninController@index');
+Route::get('/signin/update', 'SigninController@update');
 Route::post('/signin', 'SigninController@confirm');
 Route::get('/signin/{id}', 'SigninController@verify')->name('signin.verify');
 
