@@ -24,7 +24,8 @@ class User extends Authenticatable
         'email', 
         'password', 
         'client_id', 
-        'filepath'
+        'filepath',
+        'signed_url'
     ];
 
     /**
