@@ -60,9 +60,9 @@ class SigninController extends Controller
     public function update(){
         $users = User::all();
         //dd($users);
-        foreach($users as $user){
-            dump( 'done')
-        }
+        $users->map( function ($user){
+            dump($user);
+        });
     }
     
 
