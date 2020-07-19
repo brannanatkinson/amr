@@ -26,6 +26,7 @@ class LoginLink extends Mailable
      */
     public function __construct(User $user, $loginlink)
     {
+        dd($loginlink);
         $this->user = $user;
         $this->loginlink = $loginlink;
     }
@@ -37,7 +38,7 @@ class LoginLink extends Mailable
      */
     public function build()
     {
-        dd(loginlink);
+       // dd($this->$loginlink);
         return $this->from(['address' => 'brannan@amyacommunications.com', 'name' => 'Brannan Atkinson'])->view('emails.loginlink')
             ->with(['loginlink' => $this->loginlink], ['user' => $this->user]);
         
