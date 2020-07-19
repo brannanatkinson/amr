@@ -37,7 +37,7 @@ class LoginLink extends Mailable
      */
     public function build()
     {
-        return ('login link ' . this->$loginlink);
+        echo 'this' . 'that';
         return $this->from(['address' => 'brannan@amyacommunications.com', 'name' => 'Brannan Atkinson'])->view('emails.loginlink')
             ->with(['loginlink' => $this->loginlink], ['user' => $this->user]);
         
