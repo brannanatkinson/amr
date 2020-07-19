@@ -61,7 +61,7 @@ class SigninController extends Controller
         $users = User::all();
         dd($users);
         $users->each(function ($user){
-            echo ($user);
+            echo ($user->First_name);
         });
     }
     
