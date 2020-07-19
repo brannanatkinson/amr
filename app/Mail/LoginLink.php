@@ -18,6 +18,7 @@ class LoginLink extends Mailable
      * @var user
      */
     public $user;
+    public $loginlink;
     /**
      * Create a new message instance.
      *
