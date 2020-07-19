@@ -34,6 +34,7 @@ class SigninController extends Controller
             $user = User::where('email', '=', $request->email)->first();
             $url = $user->signed_url;
             Mail::to($request->email)->send(new LoginLink($user, $url));
+            dd('done');
             // $confirmation_details = [];
             // $confirmation_details['email'] = $request->email;
             // $confirmation_details['msg'] = true;
