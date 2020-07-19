@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\LoginLink;
 use App\User;
 use Auth;
-use Mail;
 
 class SigninController extends Controller
 {
