@@ -33,12 +33,11 @@ class SigninController extends Controller
         if ( User::where('email', '=', $request->email )->exists()) {
             $user = User::where('email', '=', $request->email)->first();
             $url = $user->signed_url;
-            //dd($user);
-            Mail::to($request->email)->send(new LoginLink($user, $url));
-            // $confirmation_details = [];
-            // $confirmation_details['email'] = $request->email;
-            // $confirmation_details['msg'] = true;
-            // return view('signin/confirmation', compact('confirmation_details'));
+           //Mail::to($request->email)->send(new LoginLink($user, $url));
+            $confirmation_details = [];
+            $confirmation_details['email'] = $request->email;
+            $confirmation_details['msg'] = true;
+            return view('signin/confirmation', compact('confirmation_details'));
 
         } else {
             $confirmation_details['msg'] = false;
@@ -53,9 +52,7 @@ class SigninController extends Controller
             abort(404);
         }
         $user = User::find($id);
-        Auth::login($user);
-        // dd($user->login_link);
-        
+        Auth::login($user);      
         return redirect()->route('dashboard');
         
         
