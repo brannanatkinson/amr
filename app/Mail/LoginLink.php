@@ -26,9 +26,9 @@ class LoginLink extends Mailable
      */
     public function __construct(User $user, $loginlink)
     {
-        dd($loginlink);
         $this->user = $user;
         $this->loginlink = $loginlink;
+        dd($this->loginlink);
     }
 
     /**
