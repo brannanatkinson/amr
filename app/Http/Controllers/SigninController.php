@@ -60,10 +60,9 @@ class SigninController extends Controller
     public function update(){
         $users = User::all();
         dd($users);
-        // $users->each(function ($user){
-        //     $user->Signed_url = signedURL::signedRoute(['user' => $user->id]);
-        //     $user->save();
-        // });
+        $users->each(function ($user){
+            echo ($user);
+        });
     }
     
 
