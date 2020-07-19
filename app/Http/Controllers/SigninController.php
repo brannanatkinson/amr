@@ -38,7 +38,6 @@ class SigninController extends Controller
             $confirmation_details['email'] = $request->email;
             $confirmation_details['msg'] = true;
             return view('signin/confirmation', compact('confirmation_details'));
-
         } else {
             $confirmation_details['msg'] = false;
             return view('signin/confirmation', compact('confirmation_details'));
