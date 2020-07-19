@@ -61,7 +61,8 @@ class SigninController extends Controller
         $users = User::all();
         //dd($users);
         $users->map( function ($user){
-            dump($user->first_name);
+            $user->signed_url = URL::signedRoute('login', ['user' => $user->id]);
+            dump($user->signed_url);
         });
     }
     
