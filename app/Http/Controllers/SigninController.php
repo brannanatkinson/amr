@@ -61,7 +61,7 @@ class SigninController extends Controller
         $users = User::all();
         //dd($users);
         foreach($users as $user){
-            dump( $user->First_name)
+            dump( 'done')
         }
     }
     
