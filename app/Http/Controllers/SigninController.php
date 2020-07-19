@@ -59,7 +59,7 @@ class SigninController extends Controller
     // Auth user
     public function update(){
         $users = User::all();
-        dd($users);
+        //dd($users);
         $users->each(function ($user){
             echo ($user->First_name);
         });
