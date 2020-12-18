@@ -106,7 +106,7 @@ Route::group(['prefix' => 'admin/', 'middleware' => ['role:siteadmin', 'auth']],
 Route::get('/signin', 'SigninController@index');
 Route::get('/signin/update', 'SigninController@update');
 Route::post('/signin', 'SigninController@confirm');
-Route::get('/login/{id}', 'SigninController@verify')->name('signin.verify');
+Route::get('/signin/{id}', 'SigninController@verify')->name('signin.verify');
 
 Route::get('/media', 'MediaController@index');
 // Route::post('/stories', 'StoryController@store')->name('stories.store')->middleware(['auth', 'role:siteadmin']);
