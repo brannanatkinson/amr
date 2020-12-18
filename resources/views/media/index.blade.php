@@ -11,7 +11,7 @@
 			<a style="margin: 0px 16px;" href="#{{$outlet->id}}">{{ $outlet->org_name }}</a>
 		@endforeach
 	</div>
-	<div class="sixteen wide column">
+	<div class="sixteen wide column">test
 			@foreach ($outlets as $outlet)
 				<a name="{{$outlet->id}}"></a>
 				<h2 style="font-weight: bolder; padding-top: 20px;">{{ $outlet->org_name }} <a class="ui label" style="float:right; " href="#top">Back to Top</a></h2> 
